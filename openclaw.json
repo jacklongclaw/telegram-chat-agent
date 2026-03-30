@@ -1,7 +1,7 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.3.28",
-    "lastTouchedAt": "2026-03-30T08:18:26.456Z"
+    "lastTouchedAt": "2026-03-30T12:42:06.309Z"
   },
   "wizard": {
     "lastRunAt": "2026-02-05T16:16:05.545Z",
@@ -133,10 +133,10 @@
   "tools": {
     "web": {
       "search": {
-        "enabled": false
+        "enabled": true
       },
       "fetch": {
-        "enabled": false
+        "enabled": true
       }
     }
   },
@@ -171,9 +171,12 @@
     },
     "telegram": {
       "enabled": true,
-      "dmPolicy": "pairing",
-      "botToken": "8625542590:AAHPLKUdHpErtJPHgOd0x6wmk6yBmCUNXEU",
-      "groupPolicy": "allowlist",
+      "dmPolicy": "open",
+      "botToken": "8746945255:AAFJJuwyJ2w541VtOl1NOsE4Hp5qH3NBlUI",
+      "allowFrom": [
+        "*"
+      ],
+      "groupPolicy": "open",
       "streaming": "partial"
     }
   },
