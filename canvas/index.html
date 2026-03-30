@@ -3,8 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Telegram 消息分类仪表盘</title>
+  <title>Telegram 消息分类系统</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --info: #3b82f6;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -13,32 +33,112 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
       min-height: 100vh;
-      padding: 20px;
+      color: var(--gray-800);
     }
 
-    .container {
+    .header {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
       max-width: 1400px;
       margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    /* Header */
-    .header {
-      text-align: center;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .logo-text h1 {
       color: white;
-      margin-bottom: 30px;
+      font-size: 1.5rem;
+      font-weight: 700;
     }
 
-    .header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    .logo-text p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.85rem;
     }
 
-    .header p {
-      opacity: 0.9;
-      font-size: 1.1rem;
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .status-badge {
+      background: rgba(16, 185, 129, 0.2);
+      color: #10b981;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .refresh-btn {
+      background: white;
+      color: var(--primary);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .refresh-btn:hover {
+      background: var(--gray-100);
+      transform: translateY(-1px);
+    }
+
+    .main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px;
     }
 
     /* Stats Cards */
@@ -46,80 +146,109 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
-      margin-bottom: 30px;
+      margin-bottom: 24px;
     }
 
     .stat-card {
       background: white;
       border-radius: 16px;
       padding: 24px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
     }
 
-    .stat-card:hover {
-      transform: translateY(-5px);
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
     }
 
-    .stat-card .icon {
+    .stat-card.total::before { background: linear-gradient(90deg, #6366f1, #8b5cf6); }
+    .stat-card.question::before { background: #3b82f6; }
+    .stat-card.complaint::before { background: #ef4444; }
+    .stat-card.order::before { background: #f59e0b; }
+    .stat-card.technical::before { background: #ec4899; }
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .stat-card.total .stat-icon { background: rgba(99, 102, 241, 0.1); }
+    .stat-card.question .stat-icon { background: rgba(59, 130, 246, 0.1); }
+    .stat-card.complaint .stat-icon { background: rgba(239, 68, 68, 0.1); }
+    .stat-card.order .stat-icon { background: rgba(245, 158, 11, 0.1); }
+    .stat-card.technical .stat-icon { background: rgba(236, 72, 153, 0.1); }
+
+    .stat-value {
       font-size: 2.5rem;
-      margin-bottom: 10px;
+      font-weight: 700;
+      color: var(--gray-900);
+      line-height: 1;
     }
 
-    .stat-card .value {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #333;
-    }
-
-    .stat-card .label {
-      color: #666;
+    .stat-label {
+      color: var(--gray-500);
       font-size: 0.9rem;
-      margin-top: 5px;
+      margin-top: 4px;
     }
 
-    /* Category Colors */
-    .stat-card.question { border-left: 4px solid #3b82f6; }
-    .stat-card.complaint { border-left: 4px solid #ef4444; }
-    .stat-card.order { border-left: 4px solid #f59e0b; }
-    .stat-card.suggestion { border-left: 4px solid #10b981; }
-    .stat-card.chitchat { border-left: 4px solid #8b5cf6; }
-    .stat-card.technical { border-left: 4px solid #ec4899; }
-    .stat-card.other { border-left: 4px solid #6b7280; }
-    .stat-card.total { border-left: 4px solid #0ea5e9; }
+    .stat-change {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.8rem;
+      margin-top: 8px;
+    }
+
+    .stat-change.up { color: var(--success); }
+    .stat-change.down { color: var(--danger); }
 
     /* Main Content */
-    .main-content {
+    .content-grid {
       display: grid;
-      grid-template-columns: 1fr 300px;
-      gap: 20px;
+      grid-template-columns: 1fr 380px;
+      gap: 24px;
     }
 
-    @media (max-width: 900px) {
-      .main-content {
+    @media (max-width: 1024px) {
+      .content-grid {
         grid-template-columns: 1fr;
       }
     }
 
-    /* Card */
     .card {
       background: white;
       border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       overflow: hidden;
     }
 
     .card-header {
       padding: 20px 24px;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid var(--gray-100);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .card-header h2 {
-      font-size: 1.2rem;
-      color: #333;
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .card-body {
@@ -129,65 +258,60 @@
     /* Filters */
     .filters {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
+      margin-bottom: 20px;
     }
 
     .filter-btn {
       padding: 8px 16px;
-      border: 1px solid #ddd;
+      border: 1px solid var(--gray-200);
       background: white;
       border-radius: 20px;
-      cursor: pointer;
       font-size: 0.85rem;
-      transition: all 0.2s ease;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .filter-btn:hover {
-      background: #f5f5f5;
+      border-color: var(--primary);
+      color: var(--primary);
     }
 
     .filter-btn.active {
-      background: #667eea;
+      background: var(--primary);
       color: white;
-      border-color: #667eea;
+      border-color: var(--primary);
     }
 
-    /* Search */
-    .search-box {
-      display: flex;
-      gap: 10px;
-      margin-top: 15px;
+    .filter-count {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.75rem;
     }
 
-    .search-box input {
-      flex: 1;
-      padding: 10px 16px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      outline: none;
-    }
-
-    .search-box input:focus {
-      border-color: #667eea;
+    .filter-btn:not(.active) .filter-count {
+      background: var(--gray-100);
     }
 
     /* Message List */
     .message-list {
-      max-height: 600px;
+      max-height: 500px;
       overflow-y: auto;
     }
 
     .message-item {
       padding: 16px 0;
-      border-bottom: 1px solid #f0f0f0;
-      cursor: pointer;
-      transition: background 0.2s ease;
+      border-bottom: 1px solid var(--gray-100);
+      transition: background 0.2s;
     }
 
     .message-item:hover {
-      background: #f9fafb;
+      background: var(--gray-50);
       margin: 0 -24px;
       padding: 16px 24px;
     }
@@ -204,26 +328,58 @@
     }
 
     .message-user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
       font-weight: 600;
-      color: #333;
+      font-size: 0.9rem;
+    }
+
+    .user-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .user-name {
+      font-weight: 600;
+      color: var(--gray-800);
+      font-size: 0.95rem;
+    }
+
+    .user-id {
+      font-size: 0.75rem;
+      color: var(--gray-400);
     }
 
     .message-time {
+      color: var(--gray-400);
       font-size: 0.8rem;
-      color: #999;
     }
 
     .message-content {
-      color: #555;
+      color: var(--gray-600);
       font-size: 0.95rem;
       line-height: 1.5;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      padding-left: 46px;
     }
 
     .message-tags {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
+      padding-left: 46px;
     }
 
     .tag {
@@ -231,57 +387,73 @@
       border-radius: 12px;
       font-size: 0.75rem;
       font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
     .tag.category-question { background: #dbeafe; color: #1d4ed8; }
     .tag.category-complaint { background: #fee2e2; color: #b91c1c; }
     .tag.category-order { background: #fef3c7; color: #b45309; }
+    .tag.category-technical { background: #fce7f3; color: #be185d; }
     .tag.category-suggestion { background: #d1fae5; color: #047857; }
     .tag.category-chitchat { background: #ede9fe; color: #6d28d9; }
-    .tag.category-technical { background: #fce7f3; color: #be185d; }
-    .tag.category-other { background: #f3f4f6; color: #4b5563; }
+    .tag.category-other { background: var(--gray-100); color: var(--gray-600); }
 
     .tag.sentiment-positive { background: #dcfce7; color: #15803d; }
-    .tag.sentiment-neutral { background: #f3f4f6; color: #4b5563; }
+    .tag.sentiment-neutral { background: var(--gray-100); color: var(--gray-600); }
     .tag.sentiment-negative { background: #fee2e2; color: #b91c1c; }
 
     .tag.urgency-urgent { background: #fee2e2; color: #b91c1c; }
     .tag.urgency-normal { background: #fef3c7; color: #b45309; }
     .tag.urgency-low { background: #e0f2fe; color: #0369a1; }
 
-    /* Sidebar Charts */
-    .chart-section {
+    .confidence {
+      font-size: 0.7rem;
+      opacity: 0.7;
+    }
+
+    /* Charts */
+    .chart-container {
+      position: relative;
+      height: 200px;
+      margin-bottom: 24px;
+    }
+
+    .sidebar-card {
       margin-bottom: 20px;
     }
 
-    .chart-title {
-      font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 15px;
+    .sidebar-card:last-child {
+      margin-bottom: 0;
     }
 
+    /* Bar Chart */
     .bar-chart {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
 
     .bar-item {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .bar-label {
       width: 80px;
-      font-size: 0.8rem;
-      color: #666;
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .bar-track {
       flex: 1;
       height: 8px;
-      background: #f0f0f0;
+      background: var(--gray-100);
       border-radius: 4px;
       overflow: hidden;
     }
@@ -294,241 +466,190 @@
 
     .bar-value {
       width: 30px;
-      font-size: 0.8rem;
-      color: #333;
-      text-align: right;
-    }
-
-    /* Modal */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .modal-overlay.active {
-      display: flex;
-    }
-
-    .modal {
-      background: white;
-      border-radius: 16px;
-      max-width: 600px;
-      width: 100%;
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-
-    .modal-header {
-      padding: 20px 24px;
-      border-bottom: 1px solid #eee;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .modal-header h3 {
-      font-size: 1.1rem;
-    }
-
-    .modal-close {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #999;
-    }
-
-    .modal-body {
-      padding: 24px;
-    }
-
-    .detail-section {
-      margin-bottom: 20px;
-    }
-
-    .detail-label {
       font-size: 0.85rem;
-      color: #666;
-      margin-bottom: 5px;
-    }
-
-    .detail-value {
-      font-size: 1rem;
-      color: #333;
-    }
-
-    .confidence-bar {
-      height: 6px;
-      background: #f0f0f0;
-      border-radius: 3px;
-      margin-top: 8px;
-      overflow: hidden;
-    }
-
-    .confidence-fill {
-      height: 100%;
-      background: #667eea;
-      border-radius: 3px;
+      font-weight: 600;
+      color: var(--gray-800);
+      text-align: right;
     }
 
     /* Empty State */
     .empty-state {
       text-align: center;
       padding: 40px;
-      color: #999;
+      color: var(--gray-400);
     }
 
-    .empty-state .icon {
+    .empty-state-icon {
       font-size: 3rem;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
 
-    /* Refresh Button */
-    .refresh-btn {
-      background: #667eea;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 8px;
-      cursor: pointer;
+    /* Loading */
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--gray-200);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: rgba(255, 255, 255, 0.5);
       font-size: 0.85rem;
-      transition: background 0.2s ease;
     }
 
-    .refresh-btn:hover {
-      background: #5a67d8;
-    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 16px;
+      }
 
-    /* Animation */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
-    .message-item {
-      animation: fadeIn 0.3s ease;
+      .stat-card {
+        padding: 16px;
+      }
+
+      .stat-value {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Header -->
-    <div class="header">
-      <h1>🤖 Telegram 消息分类仪表盘</h1>
-      <p>实时监控与分析用户对话内容</p>
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <div class="logo-icon">🤖</div>
+        <div class="logo-text">
+          <h1>Telegram 消息分类系统</h1>
+          <p>实时消息监控与智能分析平台</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          实时运行中
+        </div>
+        <button class="refresh-btn" onclick="loadData()">
+          <span>🔄</span>
+          刷新数据
+        </button>
+      </div>
     </div>
+  </header>
 
+  <main class="main">
     <!-- Stats Cards -->
     <div class="stats-grid" id="statsGrid">
-      <!-- 动态生成 -->
+      <div class="stat-card total">
+        <div class="stat-icon">📊</div>
+        <div class="stat-value">-</div>
+        <div class="stat-label">总消息数</div>
+      </div>
+      <div class="stat-card question">
+        <div class="stat-icon">❓</div>
+        <div class="stat-value">-</div>
+        <div class="stat-label">问题咨询</div>
+      </div>
+      <div class="stat-card complaint">
+        <div class="stat-icon">😤</div>
+        <div class="stat-value">-</div>
+        <div class="stat-label">投诉反馈</div>
+      </div>
+      <div class="stat-card order">
+        <div class="stat-icon">📦</div>
+        <div class="stat-value">-</div>
+        <div class="stat-label">订单相关</div>
+      </div>
+      <div class="stat-card technical">
+        <div class="stat-icon">🔧</div>
+        <div class="stat-value">-</div>
+        <div class="stat-label">技术问题</div>
+      </div>
     </div>
 
     <!-- Main Content -->
-    <div class="main-content">
-      <!-- Message List -->
+    <div class="content-grid">
+      <!-- Messages Card -->
       <div class="card">
         <div class="card-header">
-          <h2>📨 消息列表</h2>
-          <button class="refresh-btn" onclick="loadData()">🔄 刷新</button>
+          <h2 class="card-title">📨 消息列表</h2>
+          <span id="messageCount" style="color: var(--gray-500); font-size: 0.9rem;"></span>
         </div>
         <div class="card-body">
-          <!-- Filters -->
-          <div class="filters" id="categoryFilters">
-            <button class="filter-btn active" data-category="all">全部</button>
-            <button class="filter-btn" data-category="question">问题咨询</button>
-            <button class="filter-btn" data-category="complaint">投诉反馈</button>
-            <button class="filter-btn" data-category="order">订单相关</button>
-            <button class="filter-btn" data-category="suggestion">建议反馈</button>
-            <button class="filter-btn" data-category="technical">技术问题</button>
-            <button class="filter-btn" data-category="chitchat">闲聊</button>
-            <button class="filter-btn" data-category="other">其他</button>
-          </div>
-          
-          <!-- Search -->
-          <div class="search-box">
-            <input type="text" id="searchInput" placeholder="搜索消息内容...">
-          </div>
-
-          <!-- Message List -->
-          <div class="message-list" id="messageList" style="margin-top: 20px;">
-            <!-- 动态生成 -->
+          <div class="filters" id="filters"></div>
+          <div class="message-list" id="messageList">
+            <div class="loading">
+              <div class="spinner"></div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Sidebar -->
       <div class="sidebar">
-        <!-- Category Distribution -->
-        <div class="card">
+        <!-- Category Chart -->
+        <div class="card sidebar-card">
           <div class="card-header">
-            <h2>📊 分类分布</h2>
+            <h3 class="card-title">📊 分类分布</h3>
           </div>
           <div class="card-body">
-            <div class="chart-section">
-              <div class="chart-title">主题分类</div>
-              <div class="bar-chart" id="categoryChart">
-                <!-- 动态生成 -->
-              </div>
+            <div class="chart-container">
+              <canvas id="categoryChart"></canvas>
             </div>
           </div>
         </div>
 
-        <!-- Sentiment Distribution -->
-        <div class="card" style="margin-top: 20px;">
+        <!-- Sentiment Chart -->
+        <div class="card sidebar-card">
           <div class="card-header">
-            <h2>😊 情感分析</h2>
+            <h3 class="card-title">😊 情感分析</h3>
           </div>
           <div class="card-body">
-            <div class="bar-chart" id="sentimentChart">
-              <!-- 动态生成 -->
+            <div class="chart-container">
+              <canvas id="sentimentChart"></canvas>
             </div>
           </div>
         </div>
 
-        <!-- Urgency Distribution -->
-        <div class="card" style="margin-top: 20px;">
+        <!-- Urgency Chart -->
+        <div class="card sidebar-card">
           <div class="card-header">
-            <h2>⚡ 紧急程度</h2>
+            <h3 class="card-title">⚡ 紧急程度</h3>
           </div>
           <div class="card-body">
-            <div class="bar-chart" id="urgencyChart">
-              <!-- 动态生成 -->
-            </div>
+            <div class="bar-chart" id="urgencyChart"></div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </main>
 
-  <!-- Detail Modal -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal">
-      <div class="modal-header">
-        <h3>📋 消息详情</h3>
-        <button class="modal-close" onclick="closeModal()">&times;</button>
-      </div>
-      <div class="modal-body" id="modalBody">
-        <!-- 动态生成 -->
-      </div>
-    </div>
-  </div>
+  <footer class="footer">
+    Telegram 消息分类系统 © 2026 | 数据更新时间: <span id="updateTime">-</span>
+  </footer>
 
   <script>
-    // 数据存储
-    let allMessages = [];
-    let filteredMessages = [];
-    let currentFilter = 'all';
-
-    // 分类配置
+    // 配置
     const categoryConfig = {
       question: { name: '问题咨询', color: '#3b82f6', emoji: '❓' },
       complaint: { name: '投诉反馈', color: '#ef4444', emoji: '😤' },
@@ -551,430 +672,255 @@
       low: { name: '低', color: '#3b82f6', emoji: '🟢' }
     };
 
-    // 示例数据（实际使用时从后端加载）
-    // 真实数据（从服务器加载，如失败则使用此数据）
-    const sampleData = [
-      {
-        messageId: '5',
-        timestamp: '2026-03-30T15:24:23.984Z',
-        userId: '7722263190',
-        username: 'Jiajun Liu',
-        content: '我现在心里有点难受',
-        category: { id: 'other', name: '其他', confidence: 0 },
-        sentiment: { label: 'neutral', confidence: 0.7 },
-        urgency: { level: 'urgent', confidence: 0.8 },
-        keywords: ['心里', '难受']
-      },
-      {
-        messageId: '6',
-        timestamp: '2026-03-30T15:31:15.734Z',
-        userId: '7722263190',
-        username: 'Jiajun Liu',
-        content: '明天我想去钓鱼',
-        category: { id: 'chitchat', name: '闲聊', confidence: 0.6 },
-        sentiment: { label: 'neutral', confidence: 0.7 },
-        urgency: { level: 'low', confidence: 0.6 },
-        keywords: ['明天', '钓鱼']
-      },
-      {
-        messageId: 'msg_001',
-        timestamp: '2026-03-30T10:15:00.000Z',
-        userId: 'user_001',
-        username: '张三',
-        content: '请问这个产品怎么使用？我刚买了一个，不太会操作。',
-        category: { id: 'question', name: '问题咨询', confidence: 0.85 },
-        sentiment: { label: 'neutral', confidence: 0.7 },
-        urgency: { level: 'normal', confidence: 0.6 },
-        keywords: ['产品', '使用', '操作']
-      },
-      {
-        messageId: 'msg_002',
-        timestamp: '2026-03-30T10:18:00.000Z',
-        userId: 'user_002',
-        username: '李四',
-        content: '我想投诉！订单已经三天了还没发货，太差了！要求退款！',
-        category: { id: 'complaint', name: '投诉反馈', confidence: 0.92 },
-        sentiment: { label: 'negative', confidence: 0.95 },
-        urgency: { level: 'urgent', confidence: 0.88 },
-        keywords: ['投诉', '订单', '发货', '退款']
-      },
-      {
-        messageId: 'msg_003',
-        timestamp: '2026-03-30T10:22:00.000Z',
-        userId: 'user_003',
-        username: '王五',
-        content: '系统报错了，显示500错误，无法登录账号，请尽快处理。',
-        category: { id: 'technical', name: '技术问题', confidence: 0.88 },
-        sentiment: { label: 'neutral', confidence: 0.65 },
-        urgency: { level: 'urgent', confidence: 0.75 },
-        keywords: ['系统', '报错', '登录']
-      },
-        messageId: 'msg_004',
-        timestamp: '2026-03-30T10:25:00.000Z',
-        userId: 'user_004',
-        username: '赵六',
-        content: '非常满意这次服务！发货很快，产品质量也很好，谢谢你们！',
-        category: { id: 'other', name: '其他', confidence: 0.5 },
-        sentiment: { label: 'positive', confidence: 0.92 },
-        urgency: { level: 'low', confidence: 0.7 },
-        keywords: ['满意', '服务', '发货', '质量']
-      },
-      {
-        messageId: 'msg_005',
-        timestamp: '2026-03-30T10:30:00.000Z',
-        userId: 'user_005',
-        username: '孙七',
-        content: '你好，在吗？今天天气真不错啊，聊聊？',
-        category: { id: 'chitchat', name: '闲聊', confidence: 0.78 },
-        sentiment: { label: 'positive', confidence: 0.8 },
-        urgency: { level: 'low', confidence: 0.85 },
-        keywords: ['你好', '天气', '聊聊']
-      },
-      {
-        messageId: 'msg_006',
-        timestamp: '2026-03-30T10:35:00.000Z',
-        userId: 'user_006',
-        username: '周八',
-        content: '建议你们可以增加夜间客服，这样我们下班后也能咨询问题。',
-        category: { id: 'suggestion', name: '建议反馈', confidence: 0.82 },
-        sentiment: { label: 'neutral', confidence: 0.75 },
-        urgency: { level: 'normal', confidence: 0.65 },
-        keywords: ['建议', '夜间客服', '咨询']
-      },
-      {
-        messageId: 'msg_007',
-        timestamp: '2026-03-30T10:40:00.000Z',
-        userId: 'user_007',
-        username: '吴九',
-        content: '我的订单号是202403150001，想查询一下物流状态。',
-        category: { id: 'order', name: '订单相关', confidence: 0.9 },
-        sentiment: { label: 'neutral', confidence: 0.8 },
-        urgency: { level: 'normal', confidence: 0.7 },
-        keywords: ['订单', '订单号', '物流']
-      }
+    // 嵌入的真实数据
+    const embeddedData = [
+      {"messageId":"5","timestamp":"2026-03-30T15:24:23.984Z","userId":"7722263190","username":"Jiajun Liu","content":"我现在心里有点难受","category":{"id":"other","name":"其他","confidence":0},"sentiment":{"label":"neutral","confidence":0.7},"urgency":{"level":"urgent","confidence":0.8},"keywords":["我现在心里有点难受"]},
+      {"messageId":"6","timestamp":"2026-03-30T15:31:15.734Z","userId":"7722263190","username":"Jiajun Liu","content":"明天我想去钓鱼","category":{"id":"other","name":"其他","confidence":0},"sentiment":{"label":"neutral","confidence":0.7},"urgency":{"level":"low","confidence":0.6},"keywords":["明天我想去钓鱼"]},
+      {"messageId":"7","timestamp":"2026-03-30T16:05:12.013Z","userId":"7722263190","username":"Jiajun Liu","content":"你这个产品质量也太差了吧，我要投诉你","category":{"id":"complaint","name":"投诉反馈","confidence":0.13},"sentiment":{"label":"negative","confidence":1},"urgency":{"level":"urgent","confidence":0.8},"keywords":["你这个产品质量也太差了吧","我要投诉你"]},
+      {"messageId":"msg_1774858056559","timestamp":"2026-03-30T08:07:36.559Z","userId":"test-user","username":"Test User","content":"请问这个产品怎么使用？","category":{"id":"question","name":"问题咨询","confidence":0.22},"sentiment":{"label":"neutral","confidence":0.7},"urgency":{"level":"normal","confidence":0.7},"keywords":["请问这个产品怎么使用"]},
+      {"messageId":"msg_1774858074847","timestamp":"2026-03-30T08:07:54.847Z","userId":"test-user","username":"Test User","content":"非常满意这次服务，谢谢你们！","category":{"id":"other","name":"其他","confidence":0},"sentiment":{"label":"positive","confidence":1},"urgency":{"level":"low","confidence":0.6},"keywords":["非常满意这次服务","谢谢你们"]},
+      {"messageId":"msg_1774858074884","timestamp":"2026-03-30T08:07:54.888Z","userId":"test-user","username":"Test User","content":"系统报错了，无法登录","category":{"id":"technical","name":"技术问题","confidence":0.25},"sentiment":{"label":"neutral","confidence":0.7},"urgency":{"level":"urgent","confidence":0.6},"keywords":["系统报错了","无法登录"]},
+      {"messageId":"msg_1774858075283","timestamp":"2026-03-30T08:07:55.283Z","userId":"test-user","username":"Test User","content":"我想投诉，订单一直没发货，太差了！","category":{"id":"order","name":"订单相关","confidence":0.25},"sentiment":{"label":"negative","confidence":1},"urgency":{"level":"urgent","confidence":0.8},"keywords":["我想投诉","订单一直没发货","太差了"]}
     ];
 
-    // 初始化
-    document.addEventListener('DOMContentLoaded', () => {
-      loadData();
-      setupEventListeners();
-    });
+    let allMessages = [];
+    let currentFilter = 'all';
+    let categoryChart = null;
+    let sentimentChart = null;
 
-    // 加载数据
-    function loadData() {
-      // 从后端API获取数据 (仪表盘服务器端口 3100)
-      const API_BASE = window.location.port === '3100' ? '' : 'http://localhost:3100';
+    async function loadData() {
+      try {
+        const response = await fetch('http://localhost:3100/api/messages');
+        if (response.ok) {
+          allMessages = await response.json();
+        } else {
+          allMessages = embeddedData;
+        }
+      } catch (e) {
+        allMessages = embeddedData;
+      }
       
-      fetch(`${API_BASE}/api/messages`)
-        .then(r => r.json())
-        .then(data => {
-          allMessages = data;
-          filteredMessages = [...allMessages];
-          updateStats();
-          renderMessages();
-          renderCharts();
-        })
-        .catch(err => {
-          console.error('Failed to load data:', err);
-          // 如果API失败，使用示例数据
-          allMessages = sampleData;
-          filteredMessages = [...allMessages];
-          updateStats();
-          renderMessages();
-          renderCharts();
-        });
+      updateStats();
+      renderFilters();
+      renderMessages();
+      renderCharts();
+      updateTime();
     }
 
-    // 更新统计数据
-    function updateStats() {
-      const stats = {
-        total: allMessages.length,
-        question: 0,
-        complaint: 0,
-        order: 0,
-        suggestion: 0,
-        chitchat: 0,
-        technical: 0,
-        other: 0
-      };
+    function updateTime() {
+      document.getElementById('updateTime').textContent = new Date().toLocaleString('zh-CN');
+    }
 
-      allMessages.forEach(msg => {
-        if (stats.hasOwnProperty(msg.category.id)) {
-          stats[msg.category.id]++;
+    function updateStats() {
+      const stats = { 
+        total: allMessages.length, 
+        question: 0, 
+        complaint: 0, 
+        order: 0, 
+        technical: 0 
+      };
+      
+      allMessages.forEach(m => {
+        if (stats.hasOwnProperty(m.category?.id)) {
+          stats[m.category.id]++;
         }
       });
 
-      const statsGrid = document.getElementById('statsGrid');
-      statsGrid.innerHTML = `
-        <div class="stat-card total">
-          <div class="icon">📊</div>
-          <div class="value">${stats.total}</div>
-          <div class="label">总消息数</div>
-        </div>
-        <div class="stat-card question">
-          <div class="icon">❓</div>
-          <div class="value">${stats.question}</div>
-          <div class="label">问题咨询</div>
-        </div>
-        <div class="stat-card complaint">
-          <div class="icon">😤</div>
-          <div class="value">${stats.complaint}</div>
-          <div class="label">投诉反馈</div>
-        </div>
-        <div class="stat-card order">
-          <div class="icon">📦</div>
-          <div class="value">${stats.order}</div>
-          <div class="label">订单相关</div>
-        </div>
-        <div class="stat-card technical">
-          <div class="icon">🔧</div>
-          <div class="value">${stats.technical}</div>
-          <div class="label">技术问题</div>
-        </div>
-      `;
+      const cards = document.querySelectorAll('.stat-card');
+      cards[0].querySelector('.stat-value').textContent = stats.total;
+      cards[1].querySelector('.stat-value').textContent = stats.question;
+      cards[2].querySelector('.stat-value').textContent = stats.complaint;
+      cards[3].querySelector('.stat-value').textContent = stats.order;
+      cards[4].querySelector('.stat-value').textContent = stats.technical;
     }
 
-    // 渲染消息列表
+    function renderFilters() {
+      const catCount = {};
+      allMessages.forEach(m => {
+        catCount[m.category?.id] = (catCount[m.category?.id] || 0) + 1;
+      });
+
+      let html = `<button class="filter-btn active" onclick="setFilter('all')">
+        全部 <span class="filter-count">${allMessages.length}</span>
+      </button>`;
+
+      Object.entries(categoryConfig).forEach(([id, c]) => {
+        const count = catCount[id] || 0;
+        if (count > 0) {
+          html += `<button class="filter-btn" onclick="setFilter('${id}')">
+            ${c.emoji} ${c.name} <span class="filter-count">${count}</span>
+          </button>`;
+        }
+      });
+
+      document.getElementById('filters').innerHTML = html;
+    }
+
+    function setFilter(id) {
+      currentFilter = id;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.includes(id === 'all' ? '全部' : categoryConfig[id]?.name));
+      });
+      renderMessages();
+    }
+
     function renderMessages() {
-      const messageList = document.getElementById('messageList');
-      
-      if (filteredMessages.length === 0) {
-        messageList.innerHTML = `
+      const filtered = currentFilter === 'all' 
+        ? allMessages 
+        : allMessages.filter(m => m.category?.id === currentFilter);
+
+      document.getElementById('messageCount').textContent = `共 ${filtered.length} 条消息`;
+
+      if (filtered.length === 0) {
+        document.getElementById('messageList').innerHTML = `
           <div class="empty-state">
-            <div class="icon">📭</div>
-            <p>暂无消息数据</p>
+            <div class="empty-state-icon">📭</div>
+            <p>暂无消息</p>
           </div>
         `;
         return;
       }
 
-      messageList.innerHTML = filteredMessages.map(msg => `
-        <div class="message-item" onclick="showDetail('${msg.messageId}')">
-          <div class="message-header">
-            <span class="message-user">${msg.username || '匿名用户'}</span>
-            <span class="message-time">${formatTime(msg.timestamp)}</span>
+      const html = filtered.map(m => {
+        const initial = (m.username || '匿名')[0].toUpperCase();
+        const catId = m.category?.id || 'other';
+        const sentLabel = m.sentiment?.label || 'neutral';
+        const urgLevel = m.urgency?.level || 'normal';
+
+        return `
+          <div class="message-item">
+            <div class="message-header">
+              <div class="message-user">
+                <div class="user-avatar">${initial}</div>
+                <div class="user-info">
+                  <span class="user-name">${m.username || '匿名'}</span>
+                  <span class="user-id">ID: ${m.userId || '-'}</span>
+                </div>
+              </div>
+              <span class="message-time">${formatTime(m.timestamp)}</span>
+            </div>
+            <div class="message-content">${m.content}</div>
+            <div class="message-tags">
+              <span class="tag category-${catId}">
+                ${categoryConfig[catId]?.emoji || '📝'} ${m.category?.name || '其他'}
+              </span>
+              <span class="tag sentiment-${sentLabel}">
+                ${sentimentConfig[sentLabel]?.emoji} ${sentimentConfig[sentLabel]?.name}
+              </span>
+              <span class="tag urgency-${urgLevel}">
+                ${urgencyConfig[urgLevel]?.emoji} ${urgencyConfig[urgLevel]?.name}
+              </span>
+            </div>
           </div>
-          <div class="message-content">${truncateText(msg.content, 100)}</div>
-          <div class="message-tags">
-            <span class="tag category-${msg.category.id}">${categoryConfig[msg.category.id]?.name || msg.category.name}</span>
-            <span class="tag sentiment-${msg.sentiment.label}">${sentimentConfig[msg.sentiment.label].emoji} ${sentimentConfig[msg.sentiment.label].name}</span>
-            <span class="tag urgency-${msg.urgency.level}">${urgencyConfig[msg.urgency.level].emoji} ${urgencyConfig[msg.urgency.level].name}</span>
-          </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
+
+      document.getElementById('messageList').innerHTML = html;
     }
 
-    // 渲染图表
     function renderCharts() {
-      renderCategoryChart();
-      renderSentimentChart();
-      renderUrgencyChart();
-    }
-
-    function renderCategoryChart() {
-      const counts = {};
-      allMessages.forEach(msg => {
-        counts[msg.category.id] = (counts[msg.category.id] || 0) + 1;
+      // Category Pie Chart
+      const catCount = {};
+      allMessages.forEach(m => {
+        catCount[m.category?.id] = (catCount[m.category?.id] || 0) + 1;
       });
 
-      const total = allMessages.length || 1;
-      const chartEl = document.getElementById('categoryChart');
-      
-      chartEl.innerHTML = Object.entries(categoryConfig).map(([id, config]) => {
-        const count = counts[id] || 0;
-        const percent = (count / total * 100).toFixed(0);
-        return `
-          <div class="bar-item">
-            <span class="bar-label">${config.emoji} ${config.name}</span>
-            <div class="bar-track">
-              <div class="bar-fill" style="width: ${percent}%; background: ${config.color}"></div>
-            </div>
-            <span class="bar-value">${count}</span>
-          </div>
-        `;
-      }).join('');
-    }
+      const catLabels = [];
+      const catData = [];
+      const catColors = [];
 
-    function renderSentimentChart() {
-      const counts = { positive: 0, neutral: 0, negative: 0 };
-      allMessages.forEach(msg => {
-        counts[msg.sentiment.label]++;
-      });
-
-      const total = allMessages.length || 1;
-      const chartEl = document.getElementById('sentimentChart');
-      
-      chartEl.innerHTML = Object.entries(sentimentConfig).map(([id, config]) => {
-        const count = counts[id] || 0;
-        const percent = (count / total * 100).toFixed(0);
-        return `
-          <div class="bar-item">
-            <span class="bar-label">${config.emoji} ${config.name}</span>
-            <div class="bar-track">
-              <div class="bar-fill" style="width: ${percent}%; background: ${config.color}"></div>
-            </div>
-            <span class="bar-value">${count}</span>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function renderUrgencyChart() {
-      const counts = { urgent: 0, normal: 0, low: 0 };
-      allMessages.forEach(msg => {
-        counts[msg.urgency.level]++;
-      });
-
-      const total = allMessages.length || 1;
-      const chartEl = document.getElementById('urgencyChart');
-      
-      chartEl.innerHTML = Object.entries(urgencyConfig).map(([id, config]) => {
-        const count = counts[id] || 0;
-        const percent = (count / total * 100).toFixed(0);
-        return `
-          <div class="bar-item">
-            <span class="bar-label">${config.emoji} ${config.name}</span>
-            <div class="bar-track">
-              <div class="bar-fill" style="width: ${percent}%; background: ${config.color}"></div>
-            </div>
-            <span class="bar-value">${count}</span>
-          </div>
-        `;
-      }).join('');
-    }
-
-    // 显示详情弹窗
-    function showDetail(messageId) {
-      const msg = allMessages.find(m => m.messageId === messageId);
-      if (!msg) return;
-
-      const modalBody = document.getElementById('modalBody');
-      modalBody.innerHTML = `
-        <div class="detail-section">
-          <div class="detail-label">用户信息</div>
-          <div class="detail-value">${msg.username || '匿名用户'} (${msg.userId})</div>
-        </div>
-        
-        <div class="detail-section">
-          <div class="detail-label">消息内容</div>
-          <div class="detail-value">${msg.content}</div>
-        </div>
-
-        <div class="detail-section">
-          <div class="detail-label">主题分类</div>
-          <div class="detail-value">
-            <span class="tag category-${msg.category.id}">${categoryConfig[msg.category.id]?.emoji || '📝'} ${msg.category.name}</span>
-            置信度: ${(msg.category.confidence * 100).toFixed(0)}%
-          </div>
-          <div class="confidence-bar">
-            <div class="confidence-fill" style="width: ${msg.category.confidence * 100}%"></div>
-          </div>
-        </div>
-
-        <div class="detail-section">
-          <div class="detail-label">情感分析</div>
-          <div class="detail-value">
-            <span class="tag sentiment-${msg.sentiment.label}">${sentimentConfig[msg.sentiment.label].emoji} ${sentimentConfig[msg.sentiment.label].name}</span>
-            置信度: ${(msg.sentiment.confidence * 100).toFixed(0)}%
-          </div>
-          <div class="confidence-bar">
-            <div class="confidence-fill" style="width: ${msg.sentiment.confidence * 100}%"></div>
-          </div>
-        </div>
-
-        <div class="detail-section">
-          <div class="detail-label">紧急程度</div>
-          <div class="detail-value">
-            <span class="tag urgency-${msg.urgency.level}">${urgencyConfig[msg.urgency.level].emoji} ${urgencyConfig[msg.urgency.level].name}</span>
-            置信度: ${(msg.urgency.confidence * 100).toFixed(0)}%
-          </div>
-          <div class="confidence-bar">
-            <div class="confidence-fill" style="width: ${msg.urgency.confidence * 100}%"></div>
-          </div>
-        </div>
-
-        <div class="detail-section">
-          <div class="detail-label">关键词</div>
-          <div class="detail-value">${msg.keywords.length > 0 ? msg.keywords.map(k => `<span class="tag" style="background:#f3f4f6;color:#4b5563">${k}</span>`).join(' ') : '无'}</div>
-        </div>
-
-        <div class="detail-section">
-          <div class="detail-label">时间</div>
-          <div class="detail-value">${new Date(msg.timestamp).toLocaleString('zh-CN')}</div>
-        </div>
-
-        <div class="detail-section">
-          <div class="detail-label">消息ID</div>
-          <div class="detail-value" style="font-family: monospace; font-size: 0.85rem; color: #666;">${msg.messageId}</div>
-        </div>
-      `;
-
-      document.getElementById('modalOverlay').classList.add('active');
-    }
-
-    function closeModal() {
-      document.getElementById('modalOverlay').classList.remove('active');
-    }
-
-    // 设置事件监听
-    function setupEventListeners() {
-      // 分类筛选
-      document.getElementById('categoryFilters').addEventListener('click', (e) => {
-        if (e.target.classList.contains('filter-btn')) {
-          document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-          e.target.classList.add('active');
-          
-          currentFilter = e.target.dataset.category;
-          applyFilters();
+      Object.entries(categoryConfig).forEach(([id, c]) => {
+        if (catCount[id]) {
+          catLabels.push(c.name);
+          catData.push(catCount[id]);
+          catColors.push(c.color);
         }
       });
 
-      // 搜索
-      document.getElementById('searchInput').addEventListener('input', (e) => {
-        applyFilters();
-      });
-
-      // 点击遮罩关闭弹窗
-      document.getElementById('modalOverlay').addEventListener('click', (e) => {
-        if (e.target.id === 'modalOverlay') {
-          closeModal();
+      if (categoryChart) categoryChart.destroy();
+      categoryChart = new Chart(document.getElementById('categoryChart'), {
+        type: 'doughnut',
+        data: {
+          labels: catLabels,
+          datasets: [{
+            data: catData,
+            backgroundColor: catColors,
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { padding: 15, usePointStyle: true }
+            }
+          }
         }
       });
-    }
 
-    // 应用筛选
-    function applyFilters() {
-      const searchText = document.getElementById('searchInput').value.toLowerCase();
-      
-      filteredMessages = allMessages.filter(msg => {
-        const categoryMatch = currentFilter === 'all' || msg.category.id === currentFilter;
-        const searchMatch = !searchText || 
-          msg.content.toLowerCase().includes(searchText) ||
-          (msg.username && msg.username.toLowerCase().includes(searchText));
-        
-        return categoryMatch && searchMatch;
+      // Sentiment Pie Chart
+      const sentCount = { positive: 0, neutral: 0, negative: 0 };
+      allMessages.forEach(m => sentCount[m.sentiment?.label || 'neutral']++);
+
+      if (sentimentChart) sentimentChart.destroy();
+      sentimentChart = new Chart(document.getElementById('sentimentChart'), {
+        type: 'doughnut',
+        data: {
+          labels: ['正面', '中性', '负面'],
+          datasets: [{
+            data: [sentCount.positive, sentCount.neutral, sentCount.negative],
+            backgroundColor: ['#10b981', '#6b7280', '#ef4444'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { padding: 15, usePointStyle: true }
+            }
+          }
+        }
       });
 
-      renderMessages();
+      // Urgency Bar Chart
+      const urgCount = { urgent: 0, normal: 0, low: 0 };
+      allMessages.forEach(m => urgCount[m.urgency?.level || 'normal']++);
+
+      const urgHtml = Object.entries(urgencyConfig).map(([id, c]) => {
+        const count = urgCount[id];
+        const percent = allMessages.length ? (count / allMessages.length * 100) : 0;
+        return `
+          <div class="bar-item">
+            <span class="bar-label">${c.emoji} ${c.name}</span>
+            <div class="bar-track">
+              <div class="bar-fill" style="width:${percent}%;background:${c.color}"></div>
+            </div>
+            <span class="bar-value">${count}</span>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('urgencyChart').innerHTML = urgHtml;
     }
 
-    // 工具函数
-    function formatTime(timestamp) {
-      const date = new Date(timestamp);
+    function formatTime(ts) {
+      const d = new Date(ts);
       const now = new Date();
-      const diff = now - date;
+      const diff = now - d;
       
       if (diff < 60000) return '刚刚';
-      if (diff < 3600000) return `${Math.floor(diff / 60000)} 分钟前`;
-      if (diff < 86400000) return `${Math.floor(diff / 3600000)} 小时前`;
-      
-      return date.toLocaleDateString('zh-CN');
+      if (diff < 3600000) return `${Math.floor(diff/60000)}分钟前`;
+      if (diff < 86400000) return `${Math.floor(diff/3600000)}小时前`;
+      return d.toLocaleDateString('zh-CN');
     }
 
-    function truncateText(text, maxLength) {
-      if (text.length <= maxLength) return text;
-      return text.substring(0, maxLength) + '...';
-    }
+    // Init
+    document.addEventListener('DOMContentLoaded', loadData);
   </script>
 </body>
 </html>
