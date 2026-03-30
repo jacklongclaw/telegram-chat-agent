@@ -163,5 +163,15 @@
     "timestamp": "2026-03-30T13:48:05.559Z",
     "price": 4.79,
     "change24h": 0
+  },
+  {
+    "timestamp": "2026-03-30T14:32:39.024Z",
+    "price": 4.8,
+    "change24h": 0
+  },
+  {
+    "timestamp": "2026-03-30T14:57:56.678Z",
+    "price": 4.8,
+    "change24h": 0
   }
 ]

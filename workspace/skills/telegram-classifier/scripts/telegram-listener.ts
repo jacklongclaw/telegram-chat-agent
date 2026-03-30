@@ -4,11 +4,12 @@
  * 
  * Connects to Telegram Bot API and classifies incoming messages
  * Requires: TELEGRAM_BOT_TOKEN environment variable
+ * Optional: HTTPS_PROXY for proxy (e.g., http://47.94.149.194:7890)
  */
 
 import * as fs from 'fs';
 import * as path from 'path';
-import * as https from 'https';
+import * as child_process from 'child_process';
 import { fileURLToPath } from 'url';
 import { classifyMessage } from './classify';
 import type { ClassificationResult } from './classify';
@@ -19,9 +20,14 @@ const __dirname = path.dirname(__filename);
 
 // Configuration
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const PROXY_URL = process.env.HTTPS_PROXY || process.env.HTTP_PROXY || '';
 const API_BASE = `https://api.telegram.org/bot${BOT_TOKEN}`;
-const POLL_INTERVAL = 1000; // 1 second
+const POLL_INTERVAL = 2000; // 2 seconds
 const DATA_DIR = path.join(__dirname, '../data');
+
+if (PROXY_URL) {
+  console.log(`🔗 Using proxy: ${PROXY_URL}`);
+}
 
 // Types
 interface TelegramUser {
@@ -83,38 +89,48 @@ function ensureDataDir(): void {
   }
 }
 
-// HTTP request helper
+// HTTP request helper using curl (supports proxy reliably)
 function telegramRequest(method: string, params: Record<string, any> = {}): Promise<any> {
   return new Promise((resolve, reject) => {
     const url = `${API_BASE}/${method}`;
     const body = JSON.stringify(params);
     
-    const req = https.request(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(body)
+    // Build curl command
+    const curlArgs = ['-s', '--connect-timeout', '60', '-X', 'POST', 
+      '-H', 'Content-Type: application/json',
+      '-d', body, url];
+    
+    // Add proxy if configured
+    if (PROXY_URL) {
+      curlArgs.unshift('-x', PROXY_URL);
+    }
+    
+    const curl = child_process.spawn('curl', curlArgs);
+    let stdout = '';
+    let stderr = '';
+    
+    curl.stdout.on('data', (data) => { stdout += data; });
+    curl.stderr.on('data', (data) => { stderr += data; });
+    
+    curl.on('close', (code) => {
+      if (code !== 0) {
+        reject(new Error(`curl exited with code ${code}: ${stderr}`));
+        return;
       }
-    }, (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        try {
-          const json = JSON.parse(data);
-          if (json.ok) {
-            resolve(json.result);
-          } else {
-            reject(new Error(`Telegram API error: ${json.description}`));
-          }
-        } catch (e) {
-          reject(e);
+      
+      try {
+        const json = JSON.parse(stdout);
+        if (json.ok) {
+          resolve(json.result);
+        } else {
+          reject(new Error(`Telegram API error: ${json.description}`));
         }
-      });
+      } catch (e) {
+        reject(new Error(`Failed to parse response: ${stdout}`));
+      }
     });
     
-    req.on('error', reject);
-    req.write(body);
-    req.end();
+    curl.on('error', reject);
   });
 }
 

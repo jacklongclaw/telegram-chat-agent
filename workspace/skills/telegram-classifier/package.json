@@ -8,6 +8,7 @@
     "bot": "npx ts-node scripts/telegram-listener.ts"
   },
   "dependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "undici": "^7.24.6"
   }
 }

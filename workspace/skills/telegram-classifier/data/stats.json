@@ -1,0 +1,17 @@
+{
+  "startTime": "2026-03-30T15:21:14.506Z",
+  "totalMessages": 1,
+  "categoriesCount": {
+    "other": 1
+  },
+  "sentimentCount": {
+    "positive": 0,
+    "neutral": 1,
+    "negative": 0
+  },
+  "urgencyCount": {
+    "urgent": 1,
+    "normal": 0,
+    "low": 0
+  }
+}
