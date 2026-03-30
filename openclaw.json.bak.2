@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.3.12",
-    "lastTouchedAt": "2026-03-30T02:16:36.617Z"
+    "lastTouchedVersion": "2026.3.28",
+    "lastTouchedAt": "2026-03-30T02:22:47.881Z"
   },
   "wizard": {
     "lastRunAt": "2026-02-05T16:16:05.545Z",
@@ -157,7 +157,14 @@
       "dmPolicy": "allowlist",
       "allowFrom": [
         "ou_537f020125e1ed33c65e373bcf528b49"
-      ]
+      ],
+      "domain": "feishu",
+      "connectionMode": "websocket",
+      "webhookPath": "/feishu/events",
+      "groupPolicy": "allowlist",
+      "reactionNotifications": "own",
+      "typingIndicator": true,
+      "resolveSenderNames": true
     }
   },
   "gateway": {
@@ -286,25 +293,8 @@
   "plugins": {
     "entries": {
       "feishu": {
-        "enabled": true
-      },
-      "openclaw-weixin": {
-        "enabled": true
-      }
-    },
-    "installs": {
-      "openclaw-weixin": {
-        "source": "npm",
-        "spec": "@tencent-weixin/openclaw-weixin@compat-host-gte2026.3.0-lt2026.3.22",
-        "installPath": "/workspace/projects/extensions/openclaw-weixin",
-        "version": "1.0.3",
-        "resolvedName": "@tencent-weixin/openclaw-weixin",
-        "resolvedVersion": "1.0.3",
-        "resolvedSpec": "@tencent-weixin/openclaw-weixin@1.0.3",
-        "integrity": "sha512-TOo9rb5gt3ce3lJEulFT5Ta4/8ocWkR40wzM7lZ8OM3/fjTk3UHYeNjHmDcZlLeg93XYJKdVUFUEiujrf8zMYw==",
-        "shasum": "19f65f26d4af26a25f05cdd5f1dd3c687590f91c",
-        "resolvedAt": "2026-03-30T02:13:21.040Z",
-        "installedAt": "2026-03-30T02:13:30.028Z"
+        "enabled": true,
+        "config": {}
       }
     }
   }

@@ -1,0 +1,63 @@
+{
+  "version": "1.0.0",
+  "description": "Telegram message classification categories",
+  "categories": [
+    {
+      "id": "question",
+      "name": "问题咨询",
+      "description": "用户提出问题，寻求解答或帮助",
+      "keywords": ["怎么", "如何", "为什么", "什么", "请问", "求助", "帮忙", "能否", "可以吗"],
+      "priority": "normal"
+    },
+    {
+      "id": "complaint",
+      "name": "投诉反馈",
+      "description": "用户表达不满或投诉",
+      "keywords": ["投诉", "不满", "差评", "问题", "糟糕", "失望", "退款", "赔偿"],
+      "priority": "high"
+    },
+    {
+      "id": "order",
+      "name": "订单相关",
+      "description": "与订单、购买、支付相关的内容",
+      "keywords": ["订单", "购买", "下单", "支付", "发货", "物流", "快递", "收货"],
+      "priority": "high"
+    },
+    {
+      "id": "suggestion",
+      "name": "建议反馈",
+      "description": "用户提供改进建议或想法",
+      "keywords": ["建议", "希望", "能否", "如果", "最好", "应该", "考虑"],
+      "priority": "normal"
+    },
+    {
+      "id": "chitchat",
+      "name": "闲聊",
+      "description": "日常闲聊、打招呼、寒暄",
+      "keywords": ["你好", "在吗", "早上好", "晚上好", "哈哈", "嗯嗯", "好的"],
+      "priority": "low"
+    },
+    {
+      "id": "technical",
+      "name": "技术问题",
+      "description": "技术相关的询问或问题报告",
+      "keywords": ["错误", "bug", "崩溃", "无法", "失败", "异常", "报错", "技术"],
+      "priority": "high"
+    },
+    {
+      "id": "other",
+      "name": "其他",
+      "description": "不属于以上分类的内容",
+      "keywords": [],
+      "priority": "low"
+    }
+  ],
+  "sentimentAnalysis": {
+    "enabled": true,
+    "categories": ["positive", "neutral", "negative"]
+  },
+  "urgencyDetection": {
+    "enabled": true,
+    "levels": ["urgent", "normal", "low"]
+  }
+}

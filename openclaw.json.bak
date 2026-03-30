@@ -1,7 +1,7 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.3.28",
-    "lastTouchedAt": "2026-03-30T02:29:02.658Z"
+    "lastTouchedAt": "2026-03-30T02:32:55.585Z"
   },
   "wizard": {
     "lastRunAt": "2026-02-05T16:16:05.545Z",
@@ -297,14 +297,18 @@
         "config": {}
       },
       "openclaw-weixin": {
-        "enabled": true
+        "enabled": true,
+        "config": {}
       }
     },
     "installs": {
       "openclaw-weixin": {
-        "source": "npm",
+        "source": "path",
         "spec": "@tencent-weixin/openclaw-weixin@latest",
-        "installPath": "/workspace/projects/extensions/node_modules/@tencent-weixin/openclaw-weixin"
+        "sourcePath": "/tmp/package",
+        "installPath": "/workspace/projects/extensions/openclaw-weixin",
+        "version": "2.1.1",
+        "installedAt": "2026-03-30T02:32:03.425Z"
       }
     }
   }

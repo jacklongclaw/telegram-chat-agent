@@ -1,0 +1,13 @@
+{
+  "name": "telegram-classifier",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Telegram message classifier with sentiment analysis and urgency detection",
+  "scripts": {
+    "classify": "npx ts-node scripts/classify.ts",
+    "bot": "npx ts-node scripts/telegram-listener.ts"
+  },
+  "dependencies": {
+    "typescript": "^5.0.0"
+  }
+}
