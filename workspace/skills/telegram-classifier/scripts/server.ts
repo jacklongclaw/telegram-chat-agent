@@ -125,6 +125,12 @@ function handleStaticRequest(req: http.IncomingMessage, res: http.ServerResponse
     url = '/dashboard.html';
   }
 
+  // API endpoints
+  if (url.startsWith('/api/')) {
+    handleApiRequest(req, res);
+    return;
+  }
+
   const filePath = path.join(UI_DIR, url);
   
   // 安全检查：防止目录遍历
@@ -150,6 +156,9 @@ function handleStaticRequest(req: http.IncomingMessage, res: http.ServerResponse
   };
 
   res.setHeader('Content-Type', contentTypes[ext] || 'application/octet-stream');
+  // 添加 CORS 支持
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   
   const content = fs.readFileSync(filePath);
   res.writeHead(200);
