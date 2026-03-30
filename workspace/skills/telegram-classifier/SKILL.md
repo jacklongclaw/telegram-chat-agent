@@ -173,3 +173,29 @@ To use with OpenClaw Agent:
 - Keep your bot token secure
 - Don't commit token to version control
 - Use environment variables or secure vaults
+
+## Dashboard UI
+
+A web dashboard is available for visualizing classification results.
+
+### Start Dashboard Server
+
+```bash
+npx tsx {baseDir}/scripts/server.ts
+```
+
+Then open http://localhost:3100 in your browser.
+
+### Dashboard Features
+
+- 📊 **Overview Stats**: Total messages, category counts
+- 📨 **Message List**: Filterable, searchable message list
+- 📈 **Distribution Charts**: Category, sentiment, urgency breakdown
+- 🔍 **Detail View**: Click any message for full classification details
+
+### API Endpoints
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/messages` | Get all classified messages |
+| `GET /api/stats` | Get aggregated statistics |
