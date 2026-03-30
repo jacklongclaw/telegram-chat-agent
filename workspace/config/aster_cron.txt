@@ -1,0 +1,4 @@
+# ASTER 价格监控定时任务
+# 每 5 分钟检查一次价格
+
+*/5 * * * * cd /workspace/projects/workspace && bash scripts/run_cron_monitor.sh

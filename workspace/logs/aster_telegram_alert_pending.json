@@ -1,0 +1,9 @@
+{
+  "type": "price_alert",
+  "coin": "ASTER",
+  "price": 4.92,
+  "threshold": 0.6981,
+  "change24h": 0,
+  "message": "🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.920000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +604.77%\n\n⏰ 2026/3/2 18:30:43\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>",
+  "timestamp": "2026-03-02T10:30:43.091Z"
+}

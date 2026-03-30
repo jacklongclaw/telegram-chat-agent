@@ -1,0 +1,8 @@
+{
+  "type": "price_alert",
+  "coin": "ASTER",
+  "price": 4.92,
+  "threshold": 0.6981,
+  "timestamp": "2026-03-02T12:33:14.948Z",
+  "message": "ASTER 价格 4.92 USDT 高于阈值 0.6981 USDT"
+}

@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.2.3-1",
-    "lastTouchedAt": "2026-02-07T15:38:05.339Z"
+    "lastTouchedVersion": "2026.3.28",
+    "lastTouchedAt": "2026-03-30T02:22:47.881Z"
   },
   "wizard": {
     "lastRunAt": "2026-02-05T16:16:05.545Z",
@@ -10,12 +10,16 @@
     "lastRunMode": "local"
   },
   "browser": {
-    "color": "#00AA00",
     "enabled": true,
+    "color": "#00AA00",
     "executablePath": "/root/.cache/ms-playwright/chromium-1208/chrome-linux64/chrome",
     "headless": false,
     "noSandbox": true,
-    "defaultProfile": "openclaw"
+    "defaultProfile": "openclaw",
+    "extraArgs": [
+      "--window-size=1920,1080",
+      "--test-type"
+    ]
   },
   "models": {
     "providers": {
@@ -141,7 +145,27 @@
   },
   "commands": {
     "native": "auto",
-    "nativeSkills": "auto"
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "channels": {
+    "feishu": {
+      "appId": "cli_a94360a23eb9dcef",
+      "appSecret": "4ozShwWzHBqnoSOxATcpMe4Uq41usEJa",
+      "enabled": true,
+      "dmPolicy": "allowlist",
+      "allowFrom": [
+        "ou_537f020125e1ed33c65e373bcf528b49"
+      ],
+      "domain": "feishu",
+      "connectionMode": "websocket",
+      "webhookPath": "/feishu/events",
+      "groupPolicy": "allowlist",
+      "reactionNotifications": "own",
+      "typingIndicator": true,
+      "resolveSenderNames": true
+    }
   },
   "gateway": {
     "port": 5000,
@@ -156,7 +180,7 @@
     },
     "auth": {
       "mode": "token",
-      "token": "341a1ece288a272ee65199ab5cbce9e6c062bff4223b2151"
+      "token": "a54ad3bb-bb77-4e1e-a9f7-ca1c7e15d56e"
     },
     "trustedProxies": [
       "::1",
@@ -167,7 +191,9 @@
       "resetOnExit": false
     },
     "nodes": {
-      "browser": { "mode": "off" }
+      "browser": {
+        "mode": "off"
+      }
     }
   },
   "skills": {
@@ -184,16 +210,13 @@
       "apple-reminders": {
         "enabled": false
       },
+      "bear-notes": {
+        "enabled": false
+      },
       "bird": {
         "enabled": false
       },
       "blogwatcher": {
-        "enabled": false
-      },
-      "things-mac": {
-        "enabled": false
-      },
-      "bear-notes": {
         "enabled": false
       },
       "blucli": {
@@ -202,10 +225,10 @@
       "bluebubbles": {
         "enabled": false
       },
-      "gog": {
+      "camsnap": {
         "enabled": false
       },
-      "camsnap": {
+      "clawhub": {
         "enabled": false
       },
       "eightctl": {
@@ -214,16 +237,16 @@
       "gemini": {
         "enabled": false
       },
-      "clawhub": {
-        "enabled": false
-      },
       "gifgrep": {
         "enabled": false
       },
-      "local-places": {
+      "gog": {
         "enabled": false
       },
       "goplaces": {
+        "enabled": false
+      },
+      "local-places": {
         "enabled": false
       },
       "nano-banana-pro": {
@@ -235,10 +258,10 @@
       "notion": {
         "enabled": false
       },
-      "openai-image-gen": {
+      "obsidian": {
         "enabled": false
       },
-      "obsidian": {
+      "openai-image-gen": {
         "enabled": false
       },
       "openai-whisper": {
@@ -247,25 +270,32 @@
       "openai-whisper-api": {
         "enabled": false
       },
-      "wacli": {
-        "enabled": false
-      },
-      "spotify-player": {
-        "enabled": false
-      },
-      "sonoscli": {
-        "enabled": false
-      },
       "slack": {
         "enabled": false
       },
       "songsee": {
         "enabled": false
+      },
+      "sonoscli": {
+        "enabled": false
+      },
+      "spotify-player": {
+        "enabled": false
+      },
+      "things-mac": {
+        "enabled": false
+      },
+      "wacli": {
+        "enabled": false
       }
     }
   },
   "plugins": {
-    "entries": { "feishu": { "enabled": true } },
-    "installs": {}
+    "entries": {
+      "feishu": {
+        "enabled": true,
+        "config": {}
+      }
+    }
   }
 }

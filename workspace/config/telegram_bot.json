@@ -1,0 +1,12 @@
+{
+  "_comment": "Telegram Bot 配置 - 由 OpenClaw 管理",
+  "bot_name": "aster_bitcoin_price_monitor_bot",
+  "bot_username": "@aster_bitcoin_price_monitor_bot",
+  "enabled": true,
+  "chat_id": 7722263190,
+  "proxy": {
+    "enabled": true,
+    "http_proxy": "http://127.0.0.1:7890"
+  },
+  "configured_at": "2026-03-02T13:17:00.000Z"
+}

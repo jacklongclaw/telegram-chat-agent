@@ -1,0 +1,9 @@
+# OpenClaw 定时任务
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# ASTER 价格监控 - 每 5 分钟检查一次
+*/5 * * * * cd /workspace/projects/workspace && bash scripts/run_cron_monitor.sh
+
+# 日志轮转 - 每天清理旧日志
+0 0 * * * cd /workspace/projects/workspace && find logs -name "*.log" -mtime +7 -delete
