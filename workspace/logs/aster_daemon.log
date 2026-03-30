@@ -537,3 +537,6 @@
 [2026/3/31 00:27:32] ========== 开始价格检查 ==========
 [2026/3/31 00:27:32] CoinGecko API 失败: fetch failed
 [2026/3/31 00:27:32] 尝试从搜索获取价格...
+[2026/3/31 00:28:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 00:28:17] 无法获取价格
