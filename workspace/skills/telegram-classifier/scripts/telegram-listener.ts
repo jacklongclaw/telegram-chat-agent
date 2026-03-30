@@ -1,4 +1,4 @@
-#!/usr/bin/env npx ts-node
+#!/usr/bin/env npx tsx
 /**
  * Telegram Bot Listener
  * 
@@ -10,8 +10,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as https from 'https';
 import { fileURLToPath } from 'url';
-import { classifyMessage } from './classify.js';
-import type { ClassificationResult } from './classify.js';
+import { classifyMessage } from './classify';
+import type { ClassificationResult } from './classify';
 
 // ES module compatibility
 const __filename = fileURLToPath(import.meta.url);
@@ -373,8 +373,6 @@ process.on('SIGINT', () => {
 });
 
 // Run
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main().then((code) => process.exit(code));
-}
+main().then((code) => process.exit(code));
 
 export { startPolling, processMessage, sendAutoReply };

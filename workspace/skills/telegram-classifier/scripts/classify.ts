@@ -1,4 +1,4 @@
-#!/usr/bin/env npx ts-node
+#!/usr/bin/env npx tsx
 /**
  * Telegram Message Classifier
  * 
@@ -325,8 +325,3 @@ Examples:
 // Export for use as module
 export { classifyMessage };
 export type { ClassificationResult, ClassifierConfig, Category };
-
-// Run CLI if executed directly
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main().then((code) => process.exit(code));
-}

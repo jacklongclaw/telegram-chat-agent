@@ -1,7 +1,7 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.3.28",
-    "lastTouchedAt": "2026-03-30T02:32:55.585Z"
+    "lastTouchedAt": "2026-03-30T08:16:57.739Z"
   },
   "wizard": {
     "lastRunAt": "2026-02-05T16:16:05.545Z",
@@ -165,6 +165,15 @@
       "reactionNotifications": "own",
       "typingIndicator": true,
       "resolveSenderNames": true
+    },
+    "openclaw-weixin": {
+      "accounts": {}
+    },
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "groupPolicy": "allowlist",
+      "streaming": "partial"
     }
   },
   "gateway": {
