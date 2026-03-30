@@ -300,3 +300,33 @@
 [2026/3/2 23:02:41] ✅ 价格正常，低于阈值 0.6981
 [2026/3/2 23:02:41] ========== 检查结束 ==========
 
+[2026/3/30 21:42:32] 监控已启动 (PID: 28935)
+[2026/3/30 21:42:32] ========== ASTER 价格监控守护进程启动 ==========
+[2026/3/30 21:42:32] 检查间隔: 300 秒
+[2026/3/30 21:42:32] 价格阈值: 0.6981 USDT
+[2026/3/30 21:42:32] ========== 开始价格检查 ==========
+[2026/3/30 21:42:32] CoinGecko API 失败: fetch failed
+[2026/3/30 21:42:32] 尝试从搜索获取价格...
+[2026/3/30 21:43:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/30 21:43:17] 无法获取价格
+[2026/3/30 21:47:32] ========== 开始价格检查 ==========
+[2026/3/30 21:47:32] CoinGecko API 失败: fetch failed
+[2026/3/30 21:47:32] 尝试从搜索获取价格...
+[2026/3/30 21:48:05] 从搜索获取价格: 4.79 USDT
+[2026/3/30 21:48:05] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/30 21:48:05] ⚠️ 价格高于阈值 0.6981！
+[2026/3/30 21:48:05] 警报已保存: 4.79 USDT
+[2026/3/30 21:48:05] 尝试发送 Telegram 通知...
+[2026/3/30 21:48:05] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/30 21:48:05] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/30 21:48:05\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/30 21:48:05] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/30 21:48:05] ========== 检查结束 ==========
+
+[2026/3/30 21:52:32] ========== 开始价格检查 ==========
+[2026/3/30 21:52:32] CoinGecko API 失败: fetch failed
+[2026/3/30 21:52:32] 尝试从搜索获取价格...
+[2026/3/30 21:53:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/30 21:53:17] 无法获取价格

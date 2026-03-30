@@ -17,5 +17,5 @@
 - 价格历史: `logs/aster_price_history.json`
 - 警报记录: `logs/aster_telegram_alert_pending.json`
 
-**最后检查**: 2026/3/2 18:15:42 - 价格 4.92 USDT (⚠️ 高于阈值，警报已触发)
+**最后检查**: 2026/3/30 21:42:32 - 监控已重启 (PID: 28935)
 
