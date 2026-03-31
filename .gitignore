@@ -16,4 +16,8 @@ media/
 identity/
 devices/
 agents/
-memory/
+memory/telegram/command-hash-default-f392b1f555d5749f.txt
+telegram/command-hash-default-f392b1f555d5749f.txt
+workspace/logs/aster_daemon.log
+workspace/logs/aster_price_history.json
+workspace/logs/aster_telegram_alert_pending.json
