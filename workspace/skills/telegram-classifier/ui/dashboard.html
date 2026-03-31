@@ -408,6 +408,17 @@
       background: #5a67d8;
     }
 
+    .refresh-btn:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+    }
+
+    .last-update {
+      font-size: 0.75rem;
+      color: #666;
+      margin-left: 10px;
+    }
+
     /* Animation */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
@@ -438,7 +449,10 @@
       <div class="card">
         <div class="card-header">
           <h2>📨 消息列表</h2>
-          <button class="refresh-btn" onclick="loadData()">🔄 刷新</button>
+          <div style="display: flex; align-items: center;">
+            <button class="refresh-btn" id="refreshBtn" onclick="loadData()">🔄 刷新</button>
+            <span class="last-update" id="lastUpdate">从未更新</span>
+          </div>
         </div>
         <div class="card-body">
           <!-- Filters -->
@@ -527,6 +541,10 @@
     let allMessages = [];
     let filteredMessages = [];
     let currentFilter = 'all';
+    let currentPage = 1;
+    let totalPages = 1;
+    let isLoading = false;
+    let autoRefreshInterval = null;
 
     // 分类配置
     const categoryConfig = {
@@ -636,19 +654,48 @@
     document.addEventListener('DOMContentLoaded', () => {
       loadData();
       setupEventListeners();
+      setupAutoRefresh();
     });
 
     // 加载数据
     function loadData() {
+      if (isLoading) return;
+
+      isLoading = true;
+      const refreshBtn = document.getElementById('refreshBtn');
+      if (refreshBtn) {
+        refreshBtn.disabled = true;
+        refreshBtn.textContent = '⏳ 加载中';
+      }
+      showLoadingState();
+
       // 从后端API获取数据
-      fetch('/api/messages')
+      fetch(`/api/messages?page=${currentPage}&limit=100`)
         .then(r => r.json())
-        .then(data => {
-          allMessages = data;
+        .then(response => {
+          // Handle new paginated response format
+          if (response.data) {
+            allMessages = response.data;
+            if (response.pagination) {
+              totalPages = response.pagination.totalPages || 1;
+            }
+          } else {
+            // Fallback for old API format
+            allMessages = response;
+          }
+
           filteredMessages = [...allMessages];
           updateStats();
           renderMessages();
           renderCharts();
+          updateLastRefreshTime();
+          hideLoadingState();
+          isLoading = false;
+
+          if (refreshBtn) {
+            refreshBtn.disabled = false;
+            refreshBtn.textContent = '🔄 刷新';
+          }
         })
         .catch(err => {
           console.error('Failed to load data:', err);
@@ -658,7 +705,44 @@
           updateStats();
           renderMessages();
           renderCharts();
+          updateLastRefreshTime();
+          hideLoadingState();
+          isLoading = false;
+
+          if (refreshBtn) {
+            refreshBtn.disabled = false;
+            refreshBtn.textContent = '🔄 刷新';
+          }
         });
+    }
+
+    // 更新最后刷新时间
+    function updateLastRefreshTime() {
+      const lastUpdate = document.getElementById('lastUpdate');
+      if (lastUpdate) {
+        const now = new Date();
+        lastUpdate.textContent = `最后更新: ${now.toLocaleTimeString('zh-CN')}`;
+      }
+    }
+
+    // 显示加载状态
+    function showLoadingState() {
+      const messageList = document.getElementById('messageList');
+      messageList.innerHTML = '<div class="empty-state"><div class="icon">⏳</div><p>加载中...</p></div>';
+    }
+
+    // 隐藏加载状态
+    function hideLoadingState() {
+      // Loading state will be replaced by actual content
+    }
+
+    // 设置自动刷新
+    function setupAutoRefresh() {
+      // 每30秒自动刷新
+      autoRefreshInterval = setInterval(() => {
+        console.log('Auto-refreshing data...');
+        loadData();
+      }, 30000);
     }
 
     // 更新统计数据

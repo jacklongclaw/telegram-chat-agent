@@ -9,10 +9,12 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import * as child_process from 'child_process';
 import { fileURLToPath } from 'url';
+import { request, ProxyAgent } from 'undici';
 import { classifyMessage } from './classify';
 import type { ClassificationResult } from './classify';
+import { logger } from './logger';
+import { validateConfig, printValidationResult } from './config-validator';
 
 // ES module compatibility
 const __filename = fileURLToPath(import.meta.url);
@@ -26,7 +28,7 @@ const POLL_INTERVAL = 2000; // 2 seconds
 const DATA_DIR = path.join(__dirname, '../data');
 
 if (PROXY_URL) {
-  console.log(`🔗 Using proxy: ${PROXY_URL}`);
+  logger.info('Using proxy for Telegram API', { proxy: PROXY_URL });
 }
 
 // Types
@@ -89,49 +91,46 @@ function ensureDataDir(): void {
   }
 }
 
-// HTTP request helper using curl (supports proxy reliably)
-function telegramRequest(method: string, params: Record<string, any> = {}): Promise<any> {
-  return new Promise((resolve, reject) => {
-    const url = `${API_BASE}/${method}`;
-    const body = JSON.stringify(params);
-    
-    // Build curl command
-    const curlArgs = ['-s', '--connect-timeout', '60', '-X', 'POST', 
-      '-H', 'Content-Type: application/json',
-      '-d', body, url];
-    
-    // Add proxy if configured
-    if (PROXY_URL) {
-      curlArgs.unshift('-x', PROXY_URL);
+// HTTP request helper using undici (modern, fast, and reliable)
+async function telegramRequest(method: string, params: Record<string, any> = {}): Promise<any> {
+  const url = `${API_BASE}/${method}`;
+
+  const options: any = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(params),
+    bodyTimeout: 60000,
+    headersTimeout: 60000
+  };
+
+  // Add proxy support if configured
+  if (PROXY_URL) {
+    try {
+      options.dispatcher = new ProxyAgent(PROXY_URL);
+    } catch (error) {
+      console.error('Failed to configure proxy:', error);
     }
-    
-    const curl = child_process.spawn('curl', curlArgs);
-    let stdout = '';
-    let stderr = '';
-    
-    curl.stdout.on('data', (data) => { stdout += data; });
-    curl.stderr.on('data', (data) => { stderr += data; });
-    
-    curl.on('close', (code) => {
-      if (code !== 0) {
-        reject(new Error(`curl exited with code ${code}: ${stderr}`));
-        return;
-      }
-      
-      try {
-        const json = JSON.parse(stdout);
-        if (json.ok) {
-          resolve(json.result);
-        } else {
-          reject(new Error(`Telegram API error: ${json.description}`));
-        }
-      } catch (e) {
-        reject(new Error(`Failed to parse response: ${stdout}`));
-      }
-    });
-    
-    curl.on('error', reject);
-  });
+  }
+
+  try {
+    const response = await request(url, options);
+
+    if (response.statusCode !== 200) {
+      throw new Error(`HTTP ${response.statusCode}: ${response.statusCode}`);
+    }
+
+    const json = await response.body.json() as any;
+
+    if (json.ok) {
+      return json.result;
+    } else {
+      throw new Error(`Telegram API error: ${json.description || 'Unknown error'}`);
+    }
+  } catch (error: any) {
+    throw new Error(`Request failed: ${error.message}`);
+  }
 }
 
 // Send message to Telegram
@@ -142,58 +141,72 @@ async function sendMessage(chatId: number, text: string): Promise<void> {
       text: text,
       parse_mode: 'Markdown'
     });
-  } catch (error) {
-    console.error('Failed to send message:', error);
+    logger.debug('Message sent successfully', { chatId, textLength: text.length });
+  } catch (error: any) {
+    logger.error('Failed to send message', error, { chatId });
   }
 }
 
 // Process incoming message
 async function processMessage(message: TelegramMessage): Promise<void> {
-  const content = message.text || message.caption || '';
-  
-  if (!content || content.startsWith('/')) {
-    // Skip empty messages and commands (except /stats)
-    if (content === '/stats') {
-      await sendStats(message.chat.id);
+  try {
+    const content = message.text || message.caption || '';
+
+    if (!content || content.startsWith('/')) {
+      // Skip empty messages and commands (except /stats)
+      if (content === '/stats') {
+        await sendStats(message.chat.id);
+      }
+      return;
     }
-    return;
+
+    const userId = message.from?.id?.toString() || 'unknown';
+    const username = message.from?.username ||
+      `${message.from?.first_name || ''} ${message.from?.last_name || ''}`.trim();
+
+    logger.info('Processing new message', {
+      userId,
+      username,
+      messageId: message.message_id,
+      contentLength: content.length
+    });
+
+    // Classify the message
+    const result = classifyMessage({
+      id: message.message_id.toString(),
+      userId,
+      username,
+      content
+    });
+
+    // Update statistics
+    stats.totalMessages++;
+    stats.categoriesCount[result.category.id] = (stats.categoriesCount[result.category.id] || 0) + 1;
+    stats.sentimentCount[result.sentiment.label]++;
+    stats.urgencyCount[result.urgency.level]++;
+
+    logger.info('Message classified', {
+      messageId: result.messageId,
+      category: result.category.id,
+      sentiment: result.sentiment.label,
+      urgency: result.urgency.level,
+      confidence: result.category.confidence
+    });
+
+    // Save result
+    saveClassificationResult(result);
+
+    // Auto-reply based on classification
+    await sendAutoReply(message.chat.id, result);
+
+    // Save stats
+    saveStats();
+  } catch (error: any) {
+    logger.error('Failed to process message', error, {
+      messageId: message.message_id,
+      chatId: message.chat.id
+    });
   }
-  
-  const userId = message.from?.id?.toString() || 'unknown';
-  const username = message.from?.username || 
-    `${message.from?.first_name || ''} ${message.from?.last_name || ''}`.trim();
-  
-  console.log(`\n📩 New message from ${username} (${userId}):`);
-  console.log(`   "${content.substring(0, 50)}${content.length > 50 ? '...' : ''}"`);
-  
-  // Classify the message
-  const result = classifyMessage({
-    id: message.message_id.toString(),
-    userId,
-    username,
-    content
-  });
-  
-  // Update statistics
-  stats.totalMessages++;
-  stats.categoriesCount[result.category.id] = (stats.categoriesCount[result.category.id] || 0) + 1;
-  stats.sentimentCount[result.sentiment.label]++;
-  stats.urgencyCount[result.urgency.level]++;
-  
-  // Save result
-  saveClassificationResult(result);
-  
-  // Log result
-  console.log(`\n📊 Classification:`);
-  console.log(`   Category: ${result.category.name} (${result.category.confidence * 100}%)`);
-  console.log(`   Sentiment: ${result.sentiment.label} (${result.sentiment.confidence * 100}%)`);
-  console.log(`   Urgency: ${result.urgency.level}`);
-  
-  // Auto-reply based on classification
-  await sendAutoReply(message.chat.id, result);
-  
-  // Save stats
-  saveStats();
 }
 
 // Send automatic reply based on classification
@@ -261,19 +274,31 @@ async function sendStats(chatId: number): Promise<void> {
 
 // Save classification result
 function saveClassificationResult(result: ClassificationResult): void {
-  ensureDataDir();
-  const date = new Date().toISOString().split('T')[0];
-  const filename = `classifications_${date}.jsonl`;
-  const filepath = path.join(DATA_DIR, filename);
-  
-  fs.appendFileSync(filepath, JSON.stringify(result) + '\n', 'utf-8');
+  try {
+    ensureDataDir();
+    const date = new Date().toISOString().split('T')[0];
+    const filename = `classifications_${date}.jsonl`;
+    const filepath = path.join(DATA_DIR, filename);
+
+    fs.appendFileSync(filepath, JSON.stringify(result) + '\n', 'utf-8');
+    logger.debug('Classification saved', { messageId: result.messageId, filepath });
+  } catch (error: any) {
+    logger.error('Failed to save classification result', error, {
+      messageId: result.messageId
+    });
+  }
 }
 
 // Save statistics
 function saveStats(): void {
-  ensureDataDir();
-  const filepath = path.join(DATA_DIR, 'stats.json');
-  fs.writeFileSync(filepath, JSON.stringify(stats, null, 2), 'utf-8');
+  try {
+    ensureDataDir();
+    const filepath = path.join(DATA_DIR, 'stats.json');
+    fs.writeFileSync(filepath, JSON.stringify(stats, null, 2), 'utf-8');
+    logger.debug('Statistics saved', { totalMessages: stats.totalMessages });
+  } catch (error: any) {
+    logger.error('Failed to save statistics', error);
+  }
 }
 
 // Load statistics
@@ -282,22 +307,31 @@ function loadStats(): void {
   if (fs.existsSync(filepath)) {
     try {
       stats = JSON.parse(fs.readFileSync(filepath, 'utf-8'));
-    } catch (e) {
-      console.log('Starting with fresh statistics');
+      logger.info('Statistics loaded', {
+        totalMessages: stats.totalMessages,
+        startTime: stats.startTime
+      });
+    } catch (error: any) {
+      logger.warn('Failed to load statistics, starting fresh', error);
     }
+  } else {
+    logger.info('No existing statistics found, starting fresh');
   }
 }
 
 // Main polling loop
 async function startPolling(): Promise<void> {
   let lastUpdateId = 0;
-  
-  console.log('🤖 Telegram Bot Classifier started');
-  console.log('📋 Waiting for messages...\n');
-  console.log('Commands available:');
+  let consecutiveErrors = 0;
+  const MAX_CONSECUTIVE_ERRORS = 10;
+
+  logger.info('Telegram Bot Classifier started');
+  logger.info('Waiting for messages...');
+  console.log('\n🤖 Bot is running');
+  console.log('📋 Commands available:');
   console.log('  /stats - Show bot statistics');
   console.log('\nPress Ctrl+C to stop\n');
-  
+
   while (true) {
     try {
       const updates: TelegramUpdate[] = await telegramRequest('getUpdates', {
@@ -305,18 +339,37 @@ async function startPolling(): Promise<void> {
         timeout: 30,
         allowed_updates: ['message', 'edited_message']
       });
-      
+
+      // Reset error counter on successful request
+      consecutiveErrors = 0;
+
       for (const update of updates) {
         lastUpdateId = update.update_id;
-        
+
         const message = update.message || update.edited_message;
         if (message) {
           await processMessage(message);
         }
       }
-    } catch (error) {
-      console.error('Polling error:', error);
-      await new Promise(resolve => setTimeout(resolve, 5000)); // Wait 5s on error
+    } catch (error: any) {
+      consecutiveErrors++;
+      logger.error('Polling error', error, {
+        consecutiveErrors,
+        lastUpdateId
+      });
+
+      // If too many consecutive errors, exit
+      if (consecutiveErrors >= MAX_CONSECUTIVE_ERRORS) {
+        logger.error('Too many consecutive errors, exiting', undefined, {
+          consecutiveErrors
+        });
+        process.exit(1);
+      }
+
+      // Exponential backoff: wait longer after each error
+      const waitTime = Math.min(5000 * Math.pow(1.5, consecutiveErrors - 1), 60000);
+      logger.warn('Retrying after error', { waitTime, consecutiveErrors });
+      await new Promise(resolve => setTimeout(resolve, waitTime));
     }
   }
 }
@@ -358,26 +411,34 @@ Features:
     }
   }
   
-  if (!BOT_TOKEN) {
-    console.error('Error: TELEGRAM_BOT_TOKEN environment variable is required');
+  // Validate configuration
+  const validation = validateConfig();
+  printValidationResult(validation);
+
+  if (!validation.valid) {
     console.error('\nGet your bot token from @BotFather on Telegram');
     console.error('Then set it: export TELEGRAM_BOT_TOKEN="your-token"');
     return 1;
   }
-  
-  ensureDataDir();
-  loadStats();
-  
+
   try {
+    ensureDataDir();
+    loadStats();
+
     const me = await telegramRequest('getMe');
-    console.log(`\n✅ Connected to Telegram as: @${me.username} (${me.first_name})\n`);
-    
+    logger.info('Connected to Telegram successfully', {
+      username: me.username,
+      firstName: me.first_name,
+      botId: me.id
+    });
+    console.log(`\n✅ Connected as: @${me.username} (${me.first_name})\n`);
+
     await startPolling();
-  } catch (error) {
-    console.error('Failed to start bot:', error);
+  } catch (error: any) {
+    logger.error('Failed to start bot', error);
     return 1;
   }
-  
+
   return 0;
 }
 

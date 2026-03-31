@@ -57,7 +57,7 @@ interface ClassifierConfig {
 const configPath = path.join(__dirname, '../config/categories.json');
 const config: ClassifierConfig = JSON.parse(fs.readFileSync(configPath, 'utf-8'));
 
-// Keyword-based classification
+// Keyword-based classification with improved accuracy
 function classifyByKeywords(content: string): { category: Category; score: number } {
   const normalizedContent = content.toLowerCase();
   let bestMatch: { category: Category; score: number } = {
@@ -67,15 +67,34 @@ function classifyByKeywords(content: string): { category: Category; score: numbe
 
   for (const category of config.categories) {
     if (category.keywords.length === 0) continue;
-    
-    let matchCount = 0;
+
+    let totalScore = 0;
+    let matchedKeywords = 0;
+
     for (const keyword of category.keywords) {
-      if (normalizedContent.includes(keyword.toLowerCase())) {
-        matchCount++;
+      const keywordLower = keyword.toLowerCase();
+      const index = normalizedContent.indexOf(keywordLower);
+
+      if (index >= 0) {
+        matchedKeywords++;
+
+        // Position weight: earlier keywords have higher weight (0.7-1.0)
+        const positionWeight = 1 - (index / normalizedContent.length) * 0.3;
+
+        // Frequency weight: count multiple occurrences
+        const regex = new RegExp(keywordLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+        const occurrences = (normalizedContent.match(regex) || []).length;
+        const frequencyWeight = Math.min(occurrences * 0.2 + 0.8, 1.5);
+
+        totalScore += positionWeight * frequencyWeight;
       }
     }
-    
-    const score = matchCount / category.keywords.length;
+
+    // Calculate normalized score considering keyword density
+    const score = matchedKeywords > 0
+      ? (totalScore / category.keywords.length) * Math.min(matchedKeywords / 2, 1)
+      : 0;
+
     if (score > bestMatch.score) {
       bestMatch = { category, score };
     }
@@ -84,84 +103,172 @@ function classifyByKeywords(content: string): { category: Category; score: numbe
   return bestMatch;
 }
 
-// Sentiment analysis using keyword patterns
+// Sentiment analysis with negation detection and emoji support
 function analyzeSentiment(content: string): { label: 'positive' | 'neutral' | 'negative'; confidence: number } {
-  const positivePatterns = ['谢谢', '感谢', '很好', '不错', '喜欢', '满意', '棒', '赞', '太好了', '完美'];
-  const negativePatterns = ['不满', '差', '糟糕', '失望', '生气', '投诉', '退货', '垃圾', '骗', '坑'];
-  
+  const positivePatterns = [
+    '谢谢', '感谢', '很好', '不错', '喜欢', '满意', '棒', '赞',
+    '太好了', '完美', '优秀', '给力', '厉害', '超赞', '舒服',
+    '惊喜', '开心', '高兴', '靠谱', '值得'
+  ];
+  const negativePatterns = [
+    '不满', '差', '糟糕', '失望', '生气', '投诉', '退货',
+    '垃圾', '骗', '坑', '烂', '恶心', '愤怒', '抱怨', '难用',
+    '退款', '问题', '不行', '无法', '崩溃'
+  ];
+  const negations = ['不', '没', '别', '勿', '非', '未', '无'];
+
   const normalizedContent = content.toLowerCase();
-  
-  let positiveCount = 0;
-  let negativeCount = 0;
-  
+
+  // Detect punctuation and emojis
+  const exclamationCount = (content.match(/[!！]/g) || []).length;
+  const questionCount = (content.match(/[?？]/g) || []).length;
+  const hasPositiveEmoji = /[😊😄😃😀🎉👍✨💖🥰😍🤗👏]/.test(content);
+  const hasNegativeEmoji = /[😠😡😤😞😔💔😢😭🤬😩]/.test(content);
+
+  let positiveScore = 0;
+  let negativeScore = 0;
+
+  // Check positive patterns with negation context
   for (const pattern of positivePatterns) {
-    if (normalizedContent.includes(pattern)) positiveCount++;
+    const index = normalizedContent.indexOf(pattern);
+    if (index >= 0) {
+      // Check if there's a negation word within 2 characters before
+      const contextBefore = normalizedContent.substring(Math.max(0, index - 2), index);
+      const hasNegation = negations.some(neg => contextBefore.includes(neg));
+
+      // If negated, reduce positive score or increase negative
+      if (hasNegation) {
+        negativeScore += 0.8;
+      } else {
+        positiveScore += 1;
+      }
+    }
   }
-  
+
+  // Check negative patterns
   for (const pattern of negativePatterns) {
-    if (normalizedContent.includes(pattern)) negativeCount++;
+    if (normalizedContent.includes(pattern)) {
+      negativeScore += 1;
+    }
   }
-  
-  const total = positiveCount + negativeCount;
-  
+
+  // Add emoji weights
+  if (hasPositiveEmoji) positiveScore += 0.5;
+  if (hasNegativeEmoji) negativeScore += 0.5;
+
+  // Exclamation marks slightly boost sentiment strength
+  if (exclamationCount > 0) {
+    const boostFactor = Math.min(exclamationCount * 0.1, 0.3);
+    if (positiveScore > negativeScore) {
+      positiveScore += boostFactor;
+    } else if (negativeScore > positiveScore) {
+      negativeScore += boostFactor;
+    }
+  }
+
+  const total = positiveScore + negativeScore;
+
   if (total === 0) {
     return { label: 'neutral', confidence: 0.7 };
   }
-  
-  if (positiveCount > negativeCount) {
-    return { label: 'positive', confidence: positiveCount / total };
-  } else if (negativeCount > positiveCount) {
-    return { label: 'negative', confidence: negativeCount / total };
+
+  if (positiveScore > negativeScore) {
+    const confidence = Math.min((positiveScore / (total + 1)) * 1.2, 0.95);
+    return { label: 'positive', confidence: Math.round(confidence * 100) / 100 };
+  } else if (negativeScore > positiveScore) {
+    const confidence = Math.min((negativeScore / (total + 1)) * 1.2, 0.95);
+    return { label: 'negative', confidence: Math.round(confidence * 100) / 100 };
   }
-  
+
   return { label: 'neutral', confidence: 0.5 };
 }
 
-// Urgency detection
+// Urgency detection with context awareness
 function detectUrgency(content: string, category: Category): { level: 'urgent' | 'normal' | 'low'; confidence: number } {
-  const urgentPatterns = ['紧急', '急', '马上', '立刻', '尽快', '现在', '立刻', '马上', '投诉', '报警'];
-  const lowPatterns = ['不急', '有空', '方便时', '慢慢'];
-  
+  const urgentPatterns = [
+    '紧急', '急', '马上', '立刻', '尽快', '现在', '立即',
+    '投诉', '报警', '赶紧', '迅速', '快点', '速度', '等不了',
+    '崩溃', '瘫痪', '无法使用', '严重'
+  ];
+  const lowPatterns = [
+    '不急', '有空', '方便时', '慢慢', '随时', '不着急',
+    '有时间', '闲聊', '聊聊', '问一下'
+  ];
+
   const normalizedContent = content.toLowerCase();
-  
-  // Check for urgent patterns
+
+  // Check for urgent patterns with scoring
+  let urgencyScore = 0;
   for (const pattern of urgentPatterns) {
     if (normalizedContent.includes(pattern)) {
-      return { level: 'urgent', confidence: 0.8 };
+      urgencyScore += 1;
+      // Multiple exclamation marks increase urgency
+      if (/[!！]{2,}/.test(content)) {
+        urgencyScore += 0.5;
+      }
     }
   }
-  
+
   // Check for low priority patterns
+  let lowScore = 0;
   for (const pattern of lowPatterns) {
     if (normalizedContent.includes(pattern)) {
-      return { level: 'low', confidence: 0.7 };
+      lowScore += 1;
     }
   }
-  
+
+  // Determine urgency level
+  if (urgencyScore > 0) {
+    const confidence = Math.min(0.75 + (urgencyScore * 0.1), 0.95);
+    return { level: 'urgent', confidence: Math.round(confidence * 100) / 100 };
+  }
+
+  if (lowScore > 0) {
+    const confidence = Math.min(0.7 + (lowScore * 0.05), 0.85);
+    return { level: 'low', confidence: Math.round(confidence * 100) / 100 };
+  }
+
   // Use category priority as fallback
   if (category.priority === 'high') {
     return { level: 'urgent', confidence: 0.6 };
   } else if (category.priority === 'low') {
     return { level: 'low', confidence: 0.6 };
   }
-  
+
   return { level: 'normal', confidence: 0.7 };
 }
 
-// Extract keywords from content
+// Extract keywords from content with improved filtering
 function extractKeywords(content: string): string[] {
-  const stopWords = new Set(['的', '了', '是', '在', '我', '有', '和', '就', '不', '人', '都', '一', '一个', '上', '也', '很', '到', '说', '要', '去', '你', '会', '着', '没有', '看', '好', '自己', '这', '那', '什么']);
-  
-  const words = content.split(/[\s,，。！？、；：""''（）《》【】\n]+/);
-  const keywords: string[] = [];
-  
+  const stopWords = new Set([
+    '的', '了', '是', '在', '我', '有', '和', '就', '不', '人', '都', '一', '一个',
+    '上', '也', '很', '到', '说', '要', '去', '你', '会', '着', '没有', '看', '好',
+    '自己', '这', '那', '什么', '这个', '那个', '怎么', '为什么', '吗', '呢', '吧',
+    '啊', '呀', '哦', '嗯', '哈', '啦', '嘛', '哪', '能', '可以', '还是', '但是',
+    '如果', '因为', '所以', '然后', '已经', '可能', '应该', '觉得', '知道', '出来',
+    '起来', '下去', '过来', '进来', '回来'
+  ]);
+
+  // Split by various punctuation and whitespace
+  const words = content.split(/[\s,，。！？、；：""''（）《》【】\[\]\n\t]+/);
+  const keywordMap = new Map<string, number>();
+
   for (const word of words) {
-    if (word.length >= 2 && !stopWords.has(word)) {
-      keywords.push(word);
+    const trimmed = word.trim();
+    // Filter: length >= 2, not a number, not stopword
+    if (trimmed.length >= 2 && !stopWords.has(trimmed) && !/^\d+$/.test(trimmed)) {
+      // Count frequency
+      keywordMap.set(trimmed, (keywordMap.get(trimmed) || 0) + 1);
     }
   }
-  
-  return [...new Set(keywords)].slice(0, 10);
+
+  // Sort by frequency and return top keywords
+  const sortedKeywords = Array.from(keywordMap.entries())
+    .sort((a, b) => b[1] - a[1])
+    .map(([word]) => word)
+    .slice(0, 10);
+
+  return sortedKeywords;
 }
 
 // Generate summary
