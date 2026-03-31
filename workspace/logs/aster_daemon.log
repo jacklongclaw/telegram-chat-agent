@@ -552,3 +552,1097 @@
 [2026/3/31 00:38:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
 
 [2026/3/31 00:38:17] 无法获取价格
+[2026/3/31 00:42:32] ========== 开始价格检查 ==========
+[2026/3/31 00:42:32] CoinGecko API 失败: fetch failed
+[2026/3/31 00:42:32] 尝试从搜索获取价格...
+[2026/3/31 00:43:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 00:43:17] 无法获取价格
+[2026/3/31 00:47:32] ========== 开始价格检查 ==========
+[2026/3/31 00:47:32] CoinGecko API 失败: fetch failed
+[2026/3/31 00:47:32] 尝试从搜索获取价格...
+[2026/3/31 00:48:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 00:48:17] 无法获取价格
+[2026/3/31 00:52:32] ========== 开始价格检查 ==========
+[2026/3/31 00:52:32] CoinGecko API 失败: fetch failed
+[2026/3/31 00:52:32] 尝试从搜索获取价格...
+[2026/3/31 00:53:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 00:53:17] 无法获取价格
+[2026/3/31 00:57:32] ========== 开始价格检查 ==========
+[2026/3/31 00:57:32] CoinGecko API 失败: fetch failed
+[2026/3/31 00:57:32] 尝试从搜索获取价格...
+[2026/3/31 00:58:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 00:58:17] 无法获取价格
+[2026/3/31 01:02:32] ========== 开始价格检查 ==========
+[2026/3/31 01:02:32] CoinGecko API 失败: fetch failed
+[2026/3/31 01:02:32] 尝试从搜索获取价格...
+[2026/3/31 01:03:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 01:03:17] 无法获取价格
+[2026/3/31 01:07:32] ========== 开始价格检查 ==========
+[2026/3/31 01:07:32] CoinGecko API 失败: fetch failed
+[2026/3/31 01:07:32] 尝试从搜索获取价格...
+[2026/3/31 01:08:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 01:08:17] 无法获取价格
+[2026/3/31 01:12:32] ========== 开始价格检查 ==========
+[2026/3/31 01:12:32] CoinGecko API 失败: fetch failed
+[2026/3/31 01:12:32] 尝试从搜索获取价格...
+[2026/3/31 01:13:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 01:13:17] 无法获取价格
+[2026/3/31 01:17:32] ========== 开始价格检查 ==========
+[2026/3/31 01:17:32] CoinGecko API 失败: fetch failed
+[2026/3/31 01:17:32] 尝试从搜索获取价格...
+[2026/3/31 01:17:51] 从搜索获取价格: 4.8 USDT
+[2026/3/31 01:17:51] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 01:17:51] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 01:17:51] 警报已保存: 4.8 USDT
+[2026/3/31 01:17:51] 尝试发送 Telegram 通知...
+[2026/3/31 01:17:51] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 01:17:51] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 01:17:51\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 01:17:51] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 01:17:51] ========== 检查结束 ==========
+
+[2026/3/31 01:22:32] ========== 开始价格检查 ==========
+[2026/3/31 01:22:32] CoinGecko API 失败: fetch failed
+[2026/3/31 01:22:32] 尝试从搜索获取价格...
+[2026/3/31 01:23:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 01:23:17] 无法获取价格
+[2026/3/31 01:27:32] ========== 开始价格检查 ==========
+[2026/3/31 01:27:32] CoinGecko API 失败: fetch failed
+[2026/3/31 01:27:32] 尝试从搜索获取价格...
+[2026/3/31 01:28:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 01:28:17] 无法获取价格
+[2026/3/31 01:32:32] ========== 开始价格检查 ==========
+[2026/3/31 01:32:32] CoinGecko API 失败: fetch failed
+[2026/3/31 01:32:32] 尝试从搜索获取价格...
+[2026/3/31 01:33:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 01:33:17] 无法获取价格
+[2026/3/31 01:37:32] ========== 开始价格检查 ==========
+[2026/3/31 01:37:32] CoinGecko API 失败: fetch failed
+[2026/3/31 01:37:32] 尝试从搜索获取价格...
+[2026/3/31 01:37:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 01:37:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 01:37:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 01:37:36] 警报已保存: 4.8 USDT
+[2026/3/31 01:37:36] 尝试发送 Telegram 通知...
+[2026/3/31 01:37:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 01:37:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 01:37:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 01:37:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 01:37:36] ========== 检查结束 ==========
+
+[2026/3/31 01:42:32] ========== 开始价格检查 ==========
+[2026/3/31 01:42:32] CoinGecko API 失败: fetch failed
+[2026/3/31 01:42:32] 尝试从搜索获取价格...
+[2026/3/31 01:43:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 01:43:17] 无法获取价格
+[2026/3/31 01:47:32] ========== 开始价格检查 ==========
+[2026/3/31 01:47:32] CoinGecko API 失败: fetch failed
+[2026/3/31 01:47:32] 尝试从搜索获取价格...
+[2026/3/31 01:48:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 01:48:17] 无法获取价格
+[2026/3/31 01:52:32] ========== 开始价格检查 ==========
+[2026/3/31 01:52:32] CoinGecko API 失败: fetch failed
+[2026/3/31 01:52:32] 尝试从搜索获取价格...
+[2026/3/31 01:53:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 01:53:17] 无法获取价格
+[2026/3/31 01:57:32] ========== 开始价格检查 ==========
+[2026/3/31 01:57:32] CoinGecko API 失败: fetch failed
+[2026/3/31 01:57:32] 尝试从搜索获取价格...
+[2026/3/31 01:58:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 01:58:17] 无法获取价格
+[2026/3/31 02:02:32] ========== 开始价格检查 ==========
+[2026/3/31 02:02:32] CoinGecko API 失败: fetch failed
+[2026/3/31 02:02:32] 尝试从搜索获取价格...
+[2026/3/31 02:03:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 02:03:17] 无法获取价格
+[2026/3/31 02:07:32] ========== 开始价格检查 ==========
+[2026/3/31 02:07:32] CoinGecko API 失败: fetch failed
+[2026/3/31 02:07:32] 尝试从搜索获取价格...
+[2026/3/31 02:08:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 02:08:17] 无法获取价格
+[2026/3/31 02:12:32] ========== 开始价格检查 ==========
+[2026/3/31 02:12:32] CoinGecko API 失败: fetch failed
+[2026/3/31 02:12:32] 尝试从搜索获取价格...
+[2026/3/31 02:13:04] 从搜索获取价格: 4.8 USDT
+[2026/3/31 02:13:04] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 02:13:04] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 02:13:04] 警报已保存: 4.8 USDT
+[2026/3/31 02:13:04] 尝试发送 Telegram 通知...
+[2026/3/31 02:13:04] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 02:13:04] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 02:13:04\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 02:13:04] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 02:13:04] ========== 检查结束 ==========
+
+[2026/3/31 02:17:32] ========== 开始价格检查 ==========
+[2026/3/31 02:17:32] CoinGecko API 失败: fetch failed
+[2026/3/31 02:17:32] 尝试从搜索获取价格...
+[2026/3/31 02:18:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 02:18:17] 无法获取价格
+[2026/3/31 02:22:32] ========== 开始价格检查 ==========
+[2026/3/31 02:22:32] CoinGecko API 失败: fetch failed
+[2026/3/31 02:22:32] 尝试从搜索获取价格...
+[2026/3/31 02:23:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 02:23:17] 无法获取价格
+[2026/3/31 02:27:32] ========== 开始价格检查 ==========
+[2026/3/31 02:27:32] CoinGecko API 失败: fetch failed
+[2026/3/31 02:27:32] 尝试从搜索获取价格...
+[2026/3/31 02:28:17] 搜索失败: Command failed: cd /workspace/projects/workspace/skills/coze-web-search && npx ts-node scripts/search.ts -q "ASTER USDT price today current" --count 3 --format text 2>&1
+
+[2026/3/31 02:28:17] 无法获取价格
+[2026/3/31 02:32:32] ========== 开始价格检查 ==========
+[2026/3/31 02:32:32] CoinGecko API 失败: fetch failed
+[2026/3/31 02:32:32] 尝试从搜索获取价格...
+[2026/3/31 02:32:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 02:32:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 02:32:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 02:32:36] 警报已保存: 4.8 USDT
+[2026/3/31 02:32:36] 尝试发送 Telegram 通知...
+[2026/3/31 02:32:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 02:32:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 02:32:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 02:32:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 02:32:36] ========== 检查结束 ==========
+
+[2026/3/31 02:37:32] ========== 开始价格检查 ==========
+[2026/3/31 02:37:32] CoinGecko API 失败: fetch failed
+[2026/3/31 02:37:32] 尝试从搜索获取价格...
+[2026/3/31 02:37:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 02:37:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 02:37:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 02:37:36] 警报已保存: 4.8 USDT
+[2026/3/31 02:37:36] 尝试发送 Telegram 通知...
+[2026/3/31 02:37:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 02:37:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 02:37:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 02:37:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 02:37:36] ========== 检查结束 ==========
+
+[2026/3/31 02:42:32] ========== 开始价格检查 ==========
+[2026/3/31 02:42:32] CoinGecko API 失败: fetch failed
+[2026/3/31 02:42:32] 尝试从搜索获取价格...
+[2026/3/31 02:42:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 02:42:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 02:42:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 02:42:36] 警报已保存: 4.8 USDT
+[2026/3/31 02:42:36] 尝试发送 Telegram 通知...
+[2026/3/31 02:42:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 02:42:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 02:42:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 02:42:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 02:42:36] ========== 检查结束 ==========
+
+[2026/3/31 02:47:32] ========== 开始价格检查 ==========
+[2026/3/31 02:47:32] CoinGecko API 失败: fetch failed
+[2026/3/31 02:47:32] 尝试从搜索获取价格...
+[2026/3/31 02:47:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 02:47:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 02:47:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 02:47:36] 警报已保存: 4.8 USDT
+[2026/3/31 02:47:36] 尝试发送 Telegram 通知...
+[2026/3/31 02:47:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 02:47:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 02:47:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 02:47:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 02:47:36] ========== 检查结束 ==========
+
+[2026/3/31 02:52:32] ========== 开始价格检查 ==========
+[2026/3/31 02:52:32] CoinGecko API 失败: fetch failed
+[2026/3/31 02:52:32] 尝试从搜索获取价格...
+[2026/3/31 02:52:35] 从搜索获取价格: 4.8 USDT
+[2026/3/31 02:52:35] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 02:52:35] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 02:52:35] 警报已保存: 4.8 USDT
+[2026/3/31 02:52:35] 尝试发送 Telegram 通知...
+[2026/3/31 02:52:35] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 02:52:35] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 02:52:35\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 02:52:35] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 02:52:35] ========== 检查结束 ==========
+
+[2026/3/31 02:57:32] ========== 开始价格检查 ==========
+[2026/3/31 02:57:32] CoinGecko API 失败: fetch failed
+[2026/3/31 02:57:32] 尝试从搜索获取价格...
+[2026/3/31 02:57:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 02:57:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 02:57:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 02:57:36] 警报已保存: 4.8 USDT
+[2026/3/31 02:57:36] 尝试发送 Telegram 通知...
+[2026/3/31 02:57:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 02:57:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 02:57:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 02:57:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 02:57:36] ========== 检查结束 ==========
+
+[2026/3/31 03:02:32] ========== 开始价格检查 ==========
+[2026/3/31 03:02:32] CoinGecko API 失败: fetch failed
+[2026/3/31 03:02:32] 尝试从搜索获取价格...
+[2026/3/31 03:02:35] 从搜索获取价格: 4.8 USDT
+[2026/3/31 03:02:35] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 03:02:35] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 03:02:35] 警报已保存: 4.8 USDT
+[2026/3/31 03:02:35] 尝试发送 Telegram 通知...
+[2026/3/31 03:02:35] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 03:02:35] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 03:02:35\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 03:02:35] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 03:02:35] ========== 检查结束 ==========
+
+[2026/3/31 03:07:32] ========== 开始价格检查 ==========
+[2026/3/31 03:07:32] CoinGecko API 失败: fetch failed
+[2026/3/31 03:07:32] 尝试从搜索获取价格...
+[2026/3/31 03:07:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 03:07:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 03:07:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 03:07:36] 警报已保存: 4.8 USDT
+[2026/3/31 03:07:36] 尝试发送 Telegram 通知...
+[2026/3/31 03:07:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 03:07:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 03:07:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 03:07:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 03:07:36] ========== 检查结束 ==========
+
+[2026/3/31 03:12:32] ========== 开始价格检查 ==========
+[2026/3/31 03:12:32] CoinGecko API 失败: fetch failed
+[2026/3/31 03:12:32] 尝试从搜索获取价格...
+[2026/3/31 03:12:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 03:12:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 03:12:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 03:12:36] 警报已保存: 4.8 USDT
+[2026/3/31 03:12:36] 尝试发送 Telegram 通知...
+[2026/3/31 03:12:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 03:12:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 03:12:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 03:12:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 03:12:36] ========== 检查结束 ==========
+
+[2026/3/31 03:17:32] ========== 开始价格检查 ==========
+[2026/3/31 03:17:32] CoinGecko API 失败: fetch failed
+[2026/3/31 03:17:32] 尝试从搜索获取价格...
+[2026/3/31 03:17:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 03:17:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 03:17:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 03:17:36] 警报已保存: 4.8 USDT
+[2026/3/31 03:17:36] 尝试发送 Telegram 通知...
+[2026/3/31 03:17:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 03:17:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 03:17:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 03:17:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 03:17:36] ========== 检查结束 ==========
+
+[2026/3/31 03:22:32] ========== 开始价格检查 ==========
+[2026/3/31 03:22:32] CoinGecko API 失败: fetch failed
+[2026/3/31 03:22:32] 尝试从搜索获取价格...
+[2026/3/31 03:22:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 03:22:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 03:22:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 03:22:36] 警报已保存: 4.8 USDT
+[2026/3/31 03:22:36] 尝试发送 Telegram 通知...
+[2026/3/31 03:22:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 03:22:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 03:22:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 03:22:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 03:22:36] ========== 检查结束 ==========
+
+[2026/3/31 03:27:32] ========== 开始价格检查 ==========
+[2026/3/31 03:27:32] CoinGecko API 失败: fetch failed
+[2026/3/31 03:27:32] 尝试从搜索获取价格...
+[2026/3/31 03:27:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 03:27:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 03:27:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 03:27:36] 警报已保存: 4.8 USDT
+[2026/3/31 03:27:36] 尝试发送 Telegram 通知...
+[2026/3/31 03:27:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 03:27:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 03:27:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 03:27:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 03:27:36] ========== 检查结束 ==========
+
+[2026/3/31 03:32:32] ========== 开始价格检查 ==========
+[2026/3/31 03:32:32] CoinGecko API 失败: fetch failed
+[2026/3/31 03:32:32] 尝试从搜索获取价格...
+[2026/3/31 03:32:35] 从搜索获取价格: 4.8 USDT
+[2026/3/31 03:32:35] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 03:32:35] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 03:32:35] 警报已保存: 4.8 USDT
+[2026/3/31 03:32:35] 尝试发送 Telegram 通知...
+[2026/3/31 03:32:35] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 03:32:35] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 03:32:35\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 03:32:35] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 03:32:35] ========== 检查结束 ==========
+
+[2026/3/31 03:37:32] ========== 开始价格检查 ==========
+[2026/3/31 03:37:32] CoinGecko API 失败: fetch failed
+[2026/3/31 03:37:32] 尝试从搜索获取价格...
+[2026/3/31 03:37:35] 从搜索获取价格: 4.8 USDT
+[2026/3/31 03:37:35] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 03:37:35] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 03:37:35] 警报已保存: 4.8 USDT
+[2026/3/31 03:37:35] 尝试发送 Telegram 通知...
+[2026/3/31 03:37:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 03:37:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 03:37:35\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 03:37:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 03:37:36] ========== 检查结束 ==========
+
+[2026/3/31 03:42:32] ========== 开始价格检查 ==========
+[2026/3/31 03:42:32] CoinGecko API 失败: fetch failed
+[2026/3/31 03:42:32] 尝试从搜索获取价格...
+[2026/3/31 03:42:35] 从搜索获取价格: 4.8 USDT
+[2026/3/31 03:42:35] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 03:42:35] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 03:42:35] 警报已保存: 4.8 USDT
+[2026/3/31 03:42:35] 尝试发送 Telegram 通知...
+[2026/3/31 03:42:35] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 03:42:35] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 03:42:35\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 03:42:35] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 03:42:35] ========== 检查结束 ==========
+
+[2026/3/31 03:47:32] ========== 开始价格检查 ==========
+[2026/3/31 03:47:32] CoinGecko API 失败: fetch failed
+[2026/3/31 03:47:32] 尝试从搜索获取价格...
+[2026/3/31 03:47:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 03:47:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 03:47:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 03:47:36] 警报已保存: 4.8 USDT
+[2026/3/31 03:47:36] 尝试发送 Telegram 通知...
+[2026/3/31 03:47:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 03:47:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 03:47:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 03:47:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 03:47:36] ========== 检查结束 ==========
+
+[2026/3/31 03:52:32] ========== 开始价格检查 ==========
+[2026/3/31 03:52:32] CoinGecko API 失败: fetch failed
+[2026/3/31 03:52:32] 尝试从搜索获取价格...
+[2026/3/31 03:52:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 03:52:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 03:52:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 03:52:36] 警报已保存: 4.8 USDT
+[2026/3/31 03:52:36] 尝试发送 Telegram 通知...
+[2026/3/31 03:52:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 03:52:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 03:52:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 03:52:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 03:52:36] ========== 检查结束 ==========
+
+[2026/3/31 03:57:32] ========== 开始价格检查 ==========
+[2026/3/31 03:57:32] CoinGecko API 失败: fetch failed
+[2026/3/31 03:57:32] 尝试从搜索获取价格...
+[2026/3/31 03:57:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 03:57:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 03:57:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 03:57:36] 警报已保存: 4.8 USDT
+[2026/3/31 03:57:36] 尝试发送 Telegram 通知...
+[2026/3/31 03:57:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 03:57:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 03:57:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 03:57:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 03:57:36] ========== 检查结束 ==========
+
+[2026/3/31 04:02:32] ========== 开始价格检查 ==========
+[2026/3/31 04:02:32] CoinGecko API 失败: fetch failed
+[2026/3/31 04:02:32] 尝试从搜索获取价格...
+[2026/3/31 04:02:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 04:02:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 04:02:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 04:02:36] 警报已保存: 4.8 USDT
+[2026/3/31 04:02:36] 尝试发送 Telegram 通知...
+[2026/3/31 04:02:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 04:02:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 04:02:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 04:02:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 04:02:36] ========== 检查结束 ==========
+
+[2026/3/31 04:07:32] ========== 开始价格检查 ==========
+[2026/3/31 04:07:32] CoinGecko API 失败: fetch failed
+[2026/3/31 04:07:32] 尝试从搜索获取价格...
+[2026/3/31 04:07:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 04:07:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 04:07:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 04:07:36] 警报已保存: 4.8 USDT
+[2026/3/31 04:07:36] 尝试发送 Telegram 通知...
+[2026/3/31 04:07:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 04:07:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 04:07:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 04:07:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 04:07:36] ========== 检查结束 ==========
+
+[2026/3/31 04:12:32] ========== 开始价格检查 ==========
+[2026/3/31 04:12:32] CoinGecko API 失败: fetch failed
+[2026/3/31 04:12:32] 尝试从搜索获取价格...
+[2026/3/31 04:12:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 04:12:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 04:12:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 04:12:36] 警报已保存: 4.8 USDT
+[2026/3/31 04:12:36] 尝试发送 Telegram 通知...
+[2026/3/31 04:12:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 04:12:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 04:12:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 04:12:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 04:12:36] ========== 检查结束 ==========
+
+[2026/3/31 04:17:32] ========== 开始价格检查 ==========
+[2026/3/31 04:17:32] CoinGecko API 失败: fetch failed
+[2026/3/31 04:17:32] 尝试从搜索获取价格...
+[2026/3/31 04:17:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 04:17:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 04:17:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 04:17:36] 警报已保存: 4.8 USDT
+[2026/3/31 04:17:36] 尝试发送 Telegram 通知...
+[2026/3/31 04:17:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 04:17:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 04:17:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 04:17:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 04:17:36] ========== 检查结束 ==========
+
+[2026/3/31 04:22:32] ========== 开始价格检查 ==========
+[2026/3/31 04:22:32] CoinGecko API 失败: fetch failed
+[2026/3/31 04:22:32] 尝试从搜索获取价格...
+[2026/3/31 04:22:36] 从搜索获取价格: 4.8 USDT
+[2026/3/31 04:22:36] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 04:22:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 04:22:36] 警报已保存: 4.8 USDT
+[2026/3/31 04:22:36] 尝试发送 Telegram 通知...
+[2026/3/31 04:22:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 04:22:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 04:22:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 04:22:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 04:22:36] ========== 检查结束 ==========
+
+[2026/3/31 04:27:32] ========== 开始价格检查 ==========
+[2026/3/31 04:27:32] CoinGecko API 失败: fetch failed
+[2026/3/31 04:27:32] 尝试从搜索获取价格...
+[2026/3/31 04:27:37] 从搜索获取价格: 4.79 USDT
+[2026/3/31 04:27:37] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 04:27:37] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 04:27:37] 警报已保存: 4.79 USDT
+[2026/3/31 04:27:37] 尝试发送 Telegram 通知...
+[2026/3/31 04:27:37] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 04:27:37] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 04:27:37\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 04:27:37] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 04:27:37] ========== 检查结束 ==========
+
+[2026/3/31 04:32:32] ========== 开始价格检查 ==========
+[2026/3/31 04:32:33] CoinGecko API 失败: fetch failed
+[2026/3/31 04:32:33] 尝试从搜索获取价格...
+[2026/3/31 04:32:36] 从搜索获取价格: 4.79 USDT
+[2026/3/31 04:32:36] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 04:32:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 04:32:36] 警报已保存: 4.79 USDT
+[2026/3/31 04:32:36] 尝试发送 Telegram 通知...
+[2026/3/31 04:32:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 04:32:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 04:32:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 04:32:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 04:32:36] ========== 检查结束 ==========
+
+[2026/3/31 04:37:32] ========== 开始价格检查 ==========
+[2026/3/31 04:37:33] CoinGecko API 失败: fetch failed
+[2026/3/31 04:37:33] 尝试从搜索获取价格...
+[2026/3/31 04:37:36] 从搜索获取价格: 4.79 USDT
+[2026/3/31 04:37:36] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 04:37:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 04:37:36] 警报已保存: 4.79 USDT
+[2026/3/31 04:37:36] 尝试发送 Telegram 通知...
+[2026/3/31 04:37:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 04:37:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 04:37:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 04:37:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 04:37:36] ========== 检查结束 ==========
+
+[2026/3/31 04:42:32] ========== 开始价格检查 ==========
+[2026/3/31 04:42:33] CoinGecko API 失败: fetch failed
+[2026/3/31 04:42:33] 尝试从搜索获取价格...
+[2026/3/31 04:42:36] 从搜索获取价格: 4.79 USDT
+[2026/3/31 04:42:36] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 04:42:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 04:42:36] 警报已保存: 4.79 USDT
+[2026/3/31 04:42:36] 尝试发送 Telegram 通知...
+[2026/3/31 04:42:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 04:42:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 04:42:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 04:42:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 04:42:36] ========== 检查结束 ==========
+
+[2026/3/31 04:47:33] ========== 开始价格检查 ==========
+[2026/3/31 04:47:33] CoinGecko API 失败: fetch failed
+[2026/3/31 04:47:33] 尝试从搜索获取价格...
+[2026/3/31 04:47:36] 从搜索获取价格: 4.79 USDT
+[2026/3/31 04:47:36] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 04:47:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 04:47:36] 警报已保存: 4.79 USDT
+[2026/3/31 04:47:36] 尝试发送 Telegram 通知...
+[2026/3/31 04:47:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 04:47:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 04:47:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 04:47:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 04:47:36] ========== 检查结束 ==========
+
+[2026/3/31 04:52:33] ========== 开始价格检查 ==========
+[2026/3/31 04:52:33] CoinGecko API 失败: fetch failed
+[2026/3/31 04:52:33] 尝试从搜索获取价格...
+[2026/3/31 04:52:36] 从搜索获取价格: 4.79 USDT
+[2026/3/31 04:52:36] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 04:52:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 04:52:36] 警报已保存: 4.79 USDT
+[2026/3/31 04:52:36] 尝试发送 Telegram 通知...
+[2026/3/31 04:52:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 04:52:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 04:52:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 04:52:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 04:52:36] ========== 检查结束 ==========
+
+[2026/3/31 04:57:33] ========== 开始价格检查 ==========
+[2026/3/31 04:57:33] CoinGecko API 失败: fetch failed
+[2026/3/31 04:57:33] 尝试从搜索获取价格...
+[2026/3/31 04:57:36] 从搜索获取价格: 4.79 USDT
+[2026/3/31 04:57:36] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 04:57:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 04:57:36] 警报已保存: 4.79 USDT
+[2026/3/31 04:57:36] 尝试发送 Telegram 通知...
+[2026/3/31 04:57:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 04:57:37] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 04:57:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 04:57:37] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 04:57:37] ========== 检查结束 ==========
+
+[2026/3/31 05:02:33] ========== 开始价格检查 ==========
+[2026/3/31 05:02:33] CoinGecko API 失败: fetch failed
+[2026/3/31 05:02:33] 尝试从搜索获取价格...
+[2026/3/31 05:02:36] 从搜索获取价格: 4.79 USDT
+[2026/3/31 05:02:36] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 05:02:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 05:02:36] 警报已保存: 4.79 USDT
+[2026/3/31 05:02:36] 尝试发送 Telegram 通知...
+[2026/3/31 05:02:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 05:02:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 05:02:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 05:02:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 05:02:36] ========== 检查结束 ==========
+
+[2026/3/31 05:07:33] ========== 开始价格检查 ==========
+[2026/3/31 05:07:33] CoinGecko API 失败: fetch failed
+[2026/3/31 05:07:33] 尝试从搜索获取价格...
+[2026/3/31 05:07:36] 从搜索获取价格: 4.79 USDT
+[2026/3/31 05:07:36] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 05:07:36] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 05:07:36] 警报已保存: 4.79 USDT
+[2026/3/31 05:07:36] 尝试发送 Telegram 通知...
+[2026/3/31 05:07:36] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 05:07:36] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 05:07:36\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 05:07:36] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 05:07:36] ========== 检查结束 ==========
+
+[2026/3/31 05:12:33] ========== 开始价格检查 ==========
+[2026/3/31 05:12:33] CoinGecko API 失败: fetch failed
+[2026/3/31 05:12:33] 尝试从搜索获取价格...
+[2026/3/31 05:12:37] 从搜索获取价格: 4.79 USDT
+[2026/3/31 05:12:37] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 05:12:37] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 05:12:37] 警报已保存: 4.79 USDT
+[2026/3/31 05:12:37] 尝试发送 Telegram 通知...
+[2026/3/31 05:12:37] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 05:12:37] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 05:12:37\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 05:12:37] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 05:12:37] ========== 检查结束 ==========
+
+[2026/3/31 05:17:33] ========== 开始价格检查 ==========
+[2026/3/31 05:17:33] CoinGecko API 失败: fetch failed
+[2026/3/31 05:17:33] 尝试从搜索获取价格...
+[2026/3/31 05:17:37] 从搜索获取价格: 4.79 USDT
+[2026/3/31 05:17:37] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 05:17:37] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 05:17:37] 警报已保存: 4.79 USDT
+[2026/3/31 05:17:37] 尝试发送 Telegram 通知...
+[2026/3/31 05:17:37] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 05:17:37] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 05:17:37\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 05:17:37] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 05:17:37] ========== 检查结束 ==========
+
+[2026/3/31 05:22:33] ========== 开始价格检查 ==========
+[2026/3/31 05:22:33] CoinGecko API 失败: fetch failed
+[2026/3/31 05:22:33] 尝试从搜索获取价格...
+[2026/3/31 05:22:37] 从搜索获取价格: 4.79 USDT
+[2026/3/31 05:22:37] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 05:22:37] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 05:22:37] 警报已保存: 4.79 USDT
+[2026/3/31 05:22:37] 尝试发送 Telegram 通知...
+[2026/3/31 05:22:37] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 05:22:37] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 05:22:37\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 05:22:37] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 05:22:37] ========== 检查结束 ==========
+
+[2026/3/31 05:27:33] ========== 开始价格检查 ==========
+[2026/3/31 05:27:33] CoinGecko API 失败: fetch failed
+[2026/3/31 05:27:33] 尝试从搜索获取价格...
+[2026/3/31 05:27:37] 从搜索获取价格: 4.79 USDT
+[2026/3/31 05:27:37] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 05:27:37] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 05:27:37] 警报已保存: 4.79 USDT
+[2026/3/31 05:27:37] 尝试发送 Telegram 通知...
+[2026/3/31 05:27:37] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 05:27:37] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 05:27:37\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 05:27:37] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 05:27:37] ========== 检查结束 ==========
+
+[2026/3/31 05:32:33] ========== 开始价格检查 ==========
+[2026/3/31 05:32:34] CoinGecko API 失败: fetch failed
+[2026/3/31 05:32:34] 尝试从搜索获取价格...
+[2026/3/31 05:32:37] 从搜索获取价格: 4.79 USDT
+[2026/3/31 05:32:37] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 05:32:37] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 05:32:37] 警报已保存: 4.79 USDT
+[2026/3/31 05:32:37] 尝试发送 Telegram 通知...
+[2026/3/31 05:32:37] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 05:32:37] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 05:32:37\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 05:32:37] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 05:32:37] ========== 检查结束 ==========
+
+[2026/3/31 05:37:33] ========== 开始价格检查 ==========
+[2026/3/31 05:37:34] CoinGecko API 失败: fetch failed
+[2026/3/31 05:37:34] 尝试从搜索获取价格...
+[2026/3/31 05:37:37] 从搜索获取价格: 4.79 USDT
+[2026/3/31 05:37:37] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 05:37:37] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 05:37:37] 警报已保存: 4.79 USDT
+[2026/3/31 05:37:37] 尝试发送 Telegram 通知...
+[2026/3/31 05:37:37] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 05:37:37] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 05:37:37\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 05:37:37] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 05:37:37] ========== 检查结束 ==========
+
+[2026/3/31 05:42:33] ========== 开始价格检查 ==========
+[2026/3/31 05:42:34] CoinGecko API 失败: fetch failed
+[2026/3/31 05:42:34] 尝试从搜索获取价格...
+[2026/3/31 05:42:37] 从搜索获取价格: 4.79 USDT
+[2026/3/31 05:42:37] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 05:42:37] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 05:42:37] 警报已保存: 4.79 USDT
+[2026/3/31 05:42:37] 尝试发送 Telegram 通知...
+[2026/3/31 05:42:37] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 05:42:37] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 05:42:37\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 05:42:37] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 05:42:37] ========== 检查结束 ==========
+
+[2026/3/31 05:47:33] ========== 开始价格检查 ==========
+[2026/3/31 05:47:34] CoinGecko API 失败: fetch failed
+[2026/3/31 05:47:34] 尝试从搜索获取价格...
+[2026/3/31 05:47:37] 从搜索获取价格: 4.79 USDT
+[2026/3/31 05:47:37] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 05:47:37] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 05:47:37] 警报已保存: 4.79 USDT
+[2026/3/31 05:47:37] 尝试发送 Telegram 通知...
+[2026/3/31 05:47:37] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 05:47:37] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 05:47:37\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 05:47:37] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 05:47:37] ========== 检查结束 ==========
+
+[2026/3/31 05:52:34] ========== 开始价格检查 ==========
+[2026/3/31 05:52:34] CoinGecko API 失败: fetch failed
+[2026/3/31 05:52:34] 尝试从搜索获取价格...
+[2026/3/31 05:52:37] 从搜索获取价格: 4.79 USDT
+[2026/3/31 05:52:37] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 05:52:37] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 05:52:37] 警报已保存: 4.79 USDT
+[2026/3/31 05:52:37] 尝试发送 Telegram 通知...
+[2026/3/31 05:52:37] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 05:52:37] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 05:52:37\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 05:52:37] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 05:52:37] ========== 检查结束 ==========
+
+[2026/3/31 05:57:34] ========== 开始价格检查 ==========
+[2026/3/31 05:57:34] CoinGecko API 失败: fetch failed
+[2026/3/31 05:57:34] 尝试从搜索获取价格...
+[2026/3/31 05:57:38] 从搜索获取价格: 4.79 USDT
+[2026/3/31 05:57:38] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 05:57:38] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 05:57:38] 警报已保存: 4.79 USDT
+[2026/3/31 05:57:38] 尝试发送 Telegram 通知...
+[2026/3/31 05:57:38] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 05:57:38] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 05:57:38\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 05:57:38] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 05:57:38] ========== 检查结束 ==========
+
+[2026/3/31 06:02:34] ========== 开始价格检查 ==========
+[2026/3/31 06:02:34] CoinGecko API 失败: fetch failed
+[2026/3/31 06:02:34] 尝试从搜索获取价格...
+[2026/3/31 06:02:38] 从搜索获取价格: 4.79 USDT
+[2026/3/31 06:02:38] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 06:02:38] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 06:02:38] 警报已保存: 4.79 USDT
+[2026/3/31 06:02:38] 尝试发送 Telegram 通知...
+[2026/3/31 06:02:38] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 06:02:38] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 06:02:38\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 06:02:38] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 06:02:38] ========== 检查结束 ==========
+
+[2026/3/31 06:07:34] ========== 开始价格检查 ==========
+[2026/3/31 06:07:34] CoinGecko API 失败: fetch failed
+[2026/3/31 06:07:34] 尝试从搜索获取价格...
+[2026/3/31 06:07:38] 从搜索获取价格: 4.79 USDT
+[2026/3/31 06:07:38] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 06:07:38] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 06:07:38] 警报已保存: 4.79 USDT
+[2026/3/31 06:07:38] 尝试发送 Telegram 通知...
+[2026/3/31 06:07:38] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 06:07:38] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 06:07:38\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 06:07:38] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 06:07:38] ========== 检查结束 ==========
+
+[2026/3/31 06:12:34] ========== 开始价格检查 ==========
+[2026/3/31 06:12:34] CoinGecko API 失败: fetch failed
+[2026/3/31 06:12:34] 尝试从搜索获取价格...
+[2026/3/31 06:12:38] 从搜索获取价格: 4.79 USDT
+[2026/3/31 06:12:38] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 06:12:38] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 06:12:38] 警报已保存: 4.79 USDT
+[2026/3/31 06:12:38] 尝试发送 Telegram 通知...
+[2026/3/31 06:12:38] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 06:12:38] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 06:12:38\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 06:12:38] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 06:12:38] ========== 检查结束 ==========
+
+[2026/3/31 06:17:34] ========== 开始价格检查 ==========
+[2026/3/31 06:17:34] CoinGecko API 失败: fetch failed
+[2026/3/31 06:17:34] 尝试从搜索获取价格...
+[2026/3/31 06:17:38] 从搜索获取价格: 4.79 USDT
+[2026/3/31 06:17:38] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 06:17:38] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 06:17:38] 警报已保存: 4.79 USDT
+[2026/3/31 06:17:38] 尝试发送 Telegram 通知...
+[2026/3/31 06:17:38] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 06:17:38] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 06:17:38\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 06:17:38] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 06:17:38] ========== 检查结束 ==========
+
+[2026/3/31 06:22:34] ========== 开始价格检查 ==========
+[2026/3/31 06:22:34] CoinGecko API 失败: fetch failed
+[2026/3/31 06:22:34] 尝试从搜索获取价格...
+[2026/3/31 06:22:38] 从搜索获取价格: 4.79 USDT
+[2026/3/31 06:22:38] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 06:22:38] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 06:22:38] 警报已保存: 4.79 USDT
+[2026/3/31 06:22:38] 尝试发送 Telegram 通知...
+[2026/3/31 06:22:38] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 06:22:38] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 06:22:38\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 06:22:38] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 06:22:38] ========== 检查结束 ==========
+
+[2026/3/31 06:27:34] ========== 开始价格检查 ==========
+[2026/3/31 06:27:34] CoinGecko API 失败: fetch failed
+[2026/3/31 06:27:34] 尝试从搜索获取价格...
+[2026/3/31 06:27:38] 从搜索获取价格: 4.79 USDT
+[2026/3/31 06:27:38] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 06:27:38] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 06:27:38] 警报已保存: 4.79 USDT
+[2026/3/31 06:27:38] 尝试发送 Telegram 通知...
+[2026/3/31 06:27:38] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 06:27:38] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 06:27:38\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 06:27:38] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 06:27:38] ========== 检查结束 ==========
+
+[2026/3/31 06:32:34] ========== 开始价格检查 ==========
+[2026/3/31 06:32:35] CoinGecko API 失败: fetch failed
+[2026/3/31 06:32:35] 尝试从搜索获取价格...
+[2026/3/31 06:32:38] 从搜索获取价格: 4.79 USDT
+[2026/3/31 06:32:38] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 06:32:38] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 06:32:38] 警报已保存: 4.79 USDT
+[2026/3/31 06:32:38] 尝试发送 Telegram 通知...
+[2026/3/31 06:32:38] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 06:32:38] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 06:32:38\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 06:32:38] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 06:32:38] ========== 检查结束 ==========
+
+[2026/3/31 06:37:34] ========== 开始价格检查 ==========
+[2026/3/31 06:37:35] CoinGecko API 失败: fetch failed
+[2026/3/31 06:37:35] 尝试从搜索获取价格...
+[2026/3/31 06:37:38] 从搜索获取价格: 4.79 USDT
+[2026/3/31 06:37:38] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 06:37:38] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 06:37:38] 警报已保存: 4.79 USDT
+[2026/3/31 06:37:38] 尝试发送 Telegram 通知...
+[2026/3/31 06:37:38] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 06:37:38] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 06:37:38\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 06:37:38] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 06:37:38] ========== 检查结束 ==========
+
+[2026/3/31 06:42:34] ========== 开始价格检查 ==========
+[2026/3/31 06:42:35] CoinGecko API 失败: fetch failed
+[2026/3/31 06:42:35] 尝试从搜索获取价格...
+[2026/3/31 06:42:38] 从搜索获取价格: 4.79 USDT
+[2026/3/31 06:42:38] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 06:42:38] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 06:42:38] 警报已保存: 4.79 USDT
+[2026/3/31 06:42:38] 尝试发送 Telegram 通知...
+[2026/3/31 06:42:38] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 06:42:38] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 06:42:38\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 06:42:38] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 06:42:38] ========== 检查结束 ==========
+
+[2026/3/31 06:47:34] ========== 开始价格检查 ==========
+[2026/3/31 06:47:35] CoinGecko API 失败: fetch failed
+[2026/3/31 06:47:35] 尝试从搜索获取价格...
+[2026/3/31 06:47:38] 从搜索获取价格: 4.79 USDT
+[2026/3/31 06:47:38] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 06:47:38] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 06:47:38] 警报已保存: 4.79 USDT
+[2026/3/31 06:47:38] 尝试发送 Telegram 通知...
+[2026/3/31 06:47:38] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 06:47:38] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 06:47:38\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 06:47:38] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 06:47:38] ========== 检查结束 ==========
+
+[2026/3/31 06:52:35] ========== 开始价格检查 ==========
+[2026/3/31 06:52:35] CoinGecko API 失败: fetch failed
+[2026/3/31 06:52:35] 尝试从搜索获取价格...
+[2026/3/31 06:52:39] 从搜索获取价格: 4.79 USDT
+[2026/3/31 06:52:39] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 06:52:39] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 06:52:39] 警报已保存: 4.79 USDT
+[2026/3/31 06:52:39] 尝试发送 Telegram 通知...
+[2026/3/31 06:52:39] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 06:52:39] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 06:52:39\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 06:52:39] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 06:52:39] ========== 检查结束 ==========
+
+[2026/3/31 06:57:35] ========== 开始价格检查 ==========
+[2026/3/31 06:57:35] CoinGecko API 失败: fetch failed
+[2026/3/31 06:57:35] 尝试从搜索获取价格...
+[2026/3/31 06:57:38] 从搜索获取价格: 4.79 USDT
+[2026/3/31 06:57:38] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 06:57:38] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 06:57:38] 警报已保存: 4.79 USDT
+[2026/3/31 06:57:38] 尝试发送 Telegram 通知...
+[2026/3/31 06:57:38] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 06:57:38] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 06:57:38\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 06:57:38] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 06:57:38] ========== 检查结束 ==========
+
+[2026/3/31 07:02:35] ========== 开始价格检查 ==========
+[2026/3/31 07:02:35] CoinGecko API 失败: fetch failed
+[2026/3/31 07:02:35] 尝试从搜索获取价格...
+[2026/3/31 07:02:39] 从搜索获取价格: 4.79 USDT
+[2026/3/31 07:02:39] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 07:02:39] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 07:02:39] 警报已保存: 4.79 USDT
+[2026/3/31 07:02:39] 尝试发送 Telegram 通知...
+[2026/3/31 07:02:39] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 07:02:39] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 07:02:39\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 07:02:39] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 07:02:39] ========== 检查结束 ==========
+
+[2026/3/31 07:07:35] ========== 开始价格检查 ==========
+[2026/3/31 07:07:35] CoinGecko API 失败: fetch failed
+[2026/3/31 07:07:35] 尝试从搜索获取价格...
+[2026/3/31 07:07:38] 从搜索获取价格: 4.79 USDT
+[2026/3/31 07:07:38] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 07:07:38] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 07:07:38] 警报已保存: 4.79 USDT
+[2026/3/31 07:07:38] 尝试发送 Telegram 通知...
+[2026/3/31 07:07:38] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 07:07:38] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 07:07:38\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 07:07:38] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 07:07:38] ========== 检查结束 ==========
+
+[2026/3/31 07:12:35] ========== 开始价格检查 ==========
+[2026/3/31 07:12:35] CoinGecko API 失败: fetch failed
+[2026/3/31 07:12:35] 尝试从搜索获取价格...
+[2026/3/31 07:12:39] 从搜索获取价格: 4.79 USDT
+[2026/3/31 07:12:39] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 07:12:39] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 07:12:39] 警报已保存: 4.79 USDT
+[2026/3/31 07:12:39] 尝试发送 Telegram 通知...
+[2026/3/31 07:12:39] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 07:12:39] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 07:12:39\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 07:12:39] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 07:12:39] ========== 检查结束 ==========
+
+[2026/3/31 07:17:35] ========== 开始价格检查 ==========
+[2026/3/31 07:17:35] CoinGecko API 失败: fetch failed
+[2026/3/31 07:17:35] 尝试从搜索获取价格...
+[2026/3/31 07:17:39] 从搜索获取价格: 4.79 USDT
+[2026/3/31 07:17:39] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 07:17:39] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 07:17:39] 警报已保存: 4.79 USDT
+[2026/3/31 07:17:39] 尝试发送 Telegram 通知...
+[2026/3/31 07:17:39] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 07:17:39] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 07:17:39\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 07:17:39] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 07:17:39] ========== 检查结束 ==========
+
+[2026/3/31 07:22:35] ========== 开始价格检查 ==========
+[2026/3/31 07:22:35] CoinGecko API 失败: fetch failed
+[2026/3/31 07:22:35] 尝试从搜索获取价格...
+[2026/3/31 07:22:39] 从搜索获取价格: 4.79 USDT
+[2026/3/31 07:22:39] 当前 ASTER 价格: 4.79 USDT (24h: 0.00%)
+[2026/3/31 07:22:39] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 07:22:39] 警报已保存: 4.79 USDT
+[2026/3/31 07:22:39] 尝试发送 Telegram 通知...
+[2026/3/31 07:22:39] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 07:22:39] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.790000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +586.15%\n\n⏰ 2026/3/31 07:22:39\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 07:22:39] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 07:22:39] ========== 检查结束 ==========
+
+[2026/3/31 07:27:35] ========== 开始价格检查 ==========
+[2026/3/31 07:27:35] CoinGecko API 失败: fetch failed
+[2026/3/31 07:27:35] 尝试从搜索获取价格...
+[2026/3/31 07:27:40] 从搜索获取价格: 4.8 USDT
+[2026/3/31 07:27:40] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 07:27:40] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 07:27:40] 警报已保存: 4.8 USDT
+[2026/3/31 07:27:40] 尝试发送 Telegram 通知...
+[2026/3/31 07:27:40] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 07:27:40] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 07:27:40\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 07:27:40] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 07:27:40] ========== 检查结束 ==========
+
+[2026/3/31 07:32:35] ========== 开始价格检查 ==========
+[2026/3/31 07:32:36] CoinGecko API 失败: fetch failed
+[2026/3/31 07:32:36] 尝试从搜索获取价格...
+[2026/3/31 07:32:39] 从搜索获取价格: 4.8 USDT
+[2026/3/31 07:32:39] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 07:32:39] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 07:32:39] 警报已保存: 4.8 USDT
+[2026/3/31 07:32:39] 尝试发送 Telegram 通知...
+[2026/3/31 07:32:39] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 07:32:39] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 07:32:39\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 07:32:39] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 07:32:39] ========== 检查结束 ==========
+
+[2026/3/31 07:37:35] ========== 开始价格检查 ==========
+[2026/3/31 07:37:36] CoinGecko API 失败: fetch failed
+[2026/3/31 07:37:36] 尝试从搜索获取价格...
+[2026/3/31 07:37:39] 从搜索获取价格: 4.8 USDT
+[2026/3/31 07:37:39] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 07:37:39] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 07:37:39] 警报已保存: 4.8 USDT
+[2026/3/31 07:37:39] 尝试发送 Telegram 通知...
+[2026/3/31 07:37:39] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 07:37:39] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 07:37:39\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 07:37:39] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 07:37:39] ========== 检查结束 ==========
+
+[2026/3/31 07:42:36] ========== 开始价格检查 ==========
+[2026/3/31 07:42:36] CoinGecko API 失败: fetch failed
+[2026/3/31 07:42:36] 尝试从搜索获取价格...
+[2026/3/31 07:42:40] 从搜索获取价格: 4.8 USDT
+[2026/3/31 07:42:40] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 07:42:40] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 07:42:40] 警报已保存: 4.8 USDT
+[2026/3/31 07:42:40] 尝试发送 Telegram 通知...
+[2026/3/31 07:42:40] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 07:42:40] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 07:42:40\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 07:42:40] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 07:42:40] ========== 检查结束 ==========
+
+[2026/3/31 07:47:36] ========== 开始价格检查 ==========
+[2026/3/31 07:47:36] CoinGecko API 失败: fetch failed
+[2026/3/31 07:47:36] 尝试从搜索获取价格...
+[2026/3/31 07:47:39] 从搜索获取价格: 4.8 USDT
+[2026/3/31 07:47:39] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 07:47:39] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 07:47:39] 警报已保存: 4.8 USDT
+[2026/3/31 07:47:39] 尝试发送 Telegram 通知...
+[2026/3/31 07:47:39] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 07:47:40] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 07:47:39\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 07:47:40] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 07:47:40] ========== 检查结束 ==========
+
+[2026/3/31 07:52:36] ========== 开始价格检查 ==========
+[2026/3/31 07:52:36] CoinGecko API 失败: fetch failed
+[2026/3/31 07:52:36] 尝试从搜索获取价格...
+[2026/3/31 07:52:40] 从搜索获取价格: 4.8 USDT
+[2026/3/31 07:52:40] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 07:52:40] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 07:52:40] 警报已保存: 4.8 USDT
+[2026/3/31 07:52:40] 尝试发送 Telegram 通知...
+[2026/3/31 07:52:40] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 07:52:40] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 07:52:40\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 07:52:40] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 07:52:40] ========== 检查结束 ==========
+
+[2026/3/31 07:57:36] ========== 开始价格检查 ==========
+[2026/3/31 07:57:36] CoinGecko API 失败: fetch failed
+[2026/3/31 07:57:36] 尝试从搜索获取价格...
+[2026/3/31 07:57:40] 从搜索获取价格: 4.8 USDT
+[2026/3/31 07:57:40] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 07:57:40] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 07:57:40] 警报已保存: 4.8 USDT
+[2026/3/31 07:57:40] 尝试发送 Telegram 通知...
+[2026/3/31 07:57:40] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 07:57:40] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 07:57:40\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 07:57:40] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 07:57:40] ========== 检查结束 ==========
+
+[2026/3/31 08:02:36] ========== 开始价格检查 ==========
+[2026/3/31 08:02:36] CoinGecko API 失败: fetch failed
+[2026/3/31 08:02:36] 尝试从搜索获取价格...
+[2026/3/31 08:02:43] 从搜索获取价格: 4.8 USDT
+[2026/3/31 08:02:43] 当前 ASTER 价格: 4.8 USDT (24h: 0.00%)
+[2026/3/31 08:02:43] ⚠️ 价格高于阈值 0.6981！
+[2026/3/31 08:02:43] 警报已保存: 4.8 USDT
+[2026/3/31 08:02:43] 尝试发送 Telegram 通知...
+[2026/3/31 08:02:43] 发送命令: curl -s -x "***" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" ...
+[2026/3/31 08:02:43] Telegram 发送失败: Command failed: curl -s -x "http://127.0.0.1:7890" -X POST "https://api.telegram.org/bot8598944981:AAHIRnEOh5OBj8y1hb06gzZp561H8Kf-YWY/sendMessage" -H "Content-Type: application/json" -d '{"chat_id":7722263190,"text":"🚨 <b>ASTER 价格警报</b>\n\n💰 当前价格: <b>4.800000 USDT</b>\n📊 24h 变化: 📈 +0.00%\n🎯 阈值: 0.6981 USDT\n📈 高于阈值: +587.58%\n\n⏰ 2026/3/31 08:02:43\n\n🔗 <a href=\"https://www.asterdex.com/en/trade/pro/futures/ASTERUSDT\">前往交易</a>","parse_mode":"HTML","disable_web_page_preview":false}' --max-time 15
+
+[2026/3/31 08:02:43] Telegram 未配置或发送失败，警报已保存到文件
+[2026/3/31 08:02:43] ========== 检查结束 ==========
+
