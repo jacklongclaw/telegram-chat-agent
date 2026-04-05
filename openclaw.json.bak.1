@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.3.28",
-    "lastTouchedAt": "2026-03-30T12:42:06.309Z"
+    "lastTouchedVersion": "2026.3.13",
+    "lastTouchedAt": "2026-04-01T06:16:31.812Z"
   },
   "wizard": {
     "lastRunAt": "2026-02-05T16:16:05.545Z",
@@ -150,6 +150,16 @@
     "ownerDisplay": "raw"
   },
   "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "open",
+      "botToken": "8746945255:AAFJJuwyJ2w541VtOl1NOsE4Hp5qH3NBlUI",
+      "allowFrom": [
+        "*"
+      ],
+      "groupPolicy": "open",
+      "streaming": "partial"
+    },
     "feishu": {
       "appId": "cli_a94360a23eb9dcef",
       "appSecret": "4ozShwWzHBqnoSOxATcpMe4Uq41usEJa",
@@ -168,16 +178,6 @@
     },
     "openclaw-weixin": {
       "accounts": {}
-    },
-    "telegram": {
-      "enabled": true,
-      "dmPolicy": "open",
-      "botToken": "8746945255:AAFJJuwyJ2w541VtOl1NOsE4Hp5qH3NBlUI",
-      "allowFrom": [
-        "*"
-      ],
-      "groupPolicy": "open",
-      "streaming": "partial"
     }
   },
   "gateway": {
@@ -312,6 +312,9 @@
       "openclaw-weixin": {
         "enabled": true,
         "config": {}
+      },
+      "coze-openclaw-plugin": {
+        "enabled": true
       }
     },
     "installs": {
@@ -322,6 +325,19 @@
         "installPath": "/workspace/projects/extensions/openclaw-weixin",
         "version": "2.1.1",
         "installedAt": "2026-03-30T02:32:03.425Z"
+      },
+      "coze-openclaw-plugin": {
+        "source": "npm",
+        "spec": "coze-openclaw-plugin",
+        "installPath": "/workspace/projects/extensions/coze-openclaw-plugin",
+        "version": "0.1.15",
+        "resolvedName": "coze-openclaw-plugin",
+        "resolvedVersion": "0.1.15",
+        "resolvedSpec": "coze-openclaw-plugin@0.1.15",
+        "integrity": "sha512-kOXnq3Dt/aZh6GstdBJeDt3FNOWzg7g63IdGGzjuYi+4LSsvgmRBa1PLhbZvnJs851gF3ULltk2Gv+at4gbpjw==",
+        "shasum": "a3f71cc988b173e42bdd98500abfd46389ad23a9",
+        "resolvedAt": "2026-04-01T06:15:56.864Z",
+        "installedAt": "2026-04-01T06:16:25.947Z"
       }
     }
   }

@@ -1,23 +1,8 @@
-node_modules
-dist
-.DS_Store
-*.swp
-.git/*
-__pycache__/
-*.pyc
-.venv/*
-*.o
-*.a
-/vendor
-*.egg-info/
-/.env
-.env
-media/
-identity/
-devices/
-agents/
-memory/telegram/command-hash-default-f392b1f555d5749f.txt
-telegram/command-hash-default-f392b1f555d5749f.txt
-workspace/logs/aster_daemon.log
-workspace/logs/aster_price_history.json
-workspace/logs/aster_telegram_alert_pending.json
+# 1. 忽略当前目录下的所有文件和文件夹
+/*
+
+# 2. 只追踪配置文件、coze文件
+!/openclaw.json
+!/scripts
+!/.coze
+!/.gitignore

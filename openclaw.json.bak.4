@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.3.28",
-    "lastTouchedAt": "2026-03-30T11:34:36.141Z"
+    "lastTouchedVersion": "2026.3.12",
+    "lastTouchedAt": "2026-03-31T02:54:10.114Z"
   },
   "wizard": {
     "lastRunAt": "2026-02-05T16:16:05.545Z",
@@ -133,10 +133,10 @@
   "tools": {
     "web": {
       "search": {
-        "enabled": false
+        "enabled": true
       },
       "fetch": {
-        "enabled": false
+        "enabled": true
       }
     }
   },
@@ -150,6 +150,16 @@
     "ownerDisplay": "raw"
   },
   "channels": {
+    "telegram": {
+      "enabled": false,
+      "dmPolicy": "open",
+      "botToken": "8746945255:AAFJJuwyJ2w541VtOl1NOsE4Hp5qH3NBlUI",
+      "allowFrom": [
+        "*"
+      ],
+      "groupPolicy": "open",
+      "streaming": "partial"
+    },
     "feishu": {
       "appId": "cli_a94360a23eb9dcef",
       "appSecret": "4ozShwWzHBqnoSOxATcpMe4Uq41usEJa",
@@ -168,16 +178,6 @@
     },
     "openclaw-weixin": {
       "accounts": {}
-    },
-    "telegram": {
-      "enabled": true,
-      "dmPolicy": "pairing",
-      "botToken": "8746945255:AAFJJuwyJ2w541VtOl1NOsE4Hp5qH3NBlUI",
-      "allowFrom": [
-        "*"
-      ],
-      "groupPolicy": "open",
-      "streaming": "partial"
     }
   },
   "gateway": {
