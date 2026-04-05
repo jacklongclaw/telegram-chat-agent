@@ -19,3 +19,30 @@
 
 **最后检查**: 2026/3/30 21:42:32 - 监控已重启 (PID: 28935)
 
+---
+
+## 群聊周报任务
+
+### 周报生成 📊
+- **目标**: 自动生成群聊周报并发送到飞书群
+- **Chat ID**: oc_31f6ea603d43e02cfb3ed675d9dc37cb
+- **频率**: 每周日 9:00 AM
+- **状态**: ✅ 已配置
+
+**功能**:
+- ✅ 自动记录所有群消息（从 2026-04-05 开始）
+- ✅ 智能分类：问题/任务/公告/会议/决策/调试/社交
+- ✅ 统计活跃成员
+- ✅ 提取本周关键讨论
+
+**脚本位置**:
+- 记录脚本: `scripts/conversation_logger.py`
+- 周报脚本: `scripts/generate_weekly_report.sh`
+- 数据存储: `data/conversations/`
+- 报告存储: `reports/`
+
+**手动生成周报**:
+```bash
+cd /workspace/projects/workspace && python3 scripts/conversation_logger.py report
+```
+

@@ -1,7 +1,7 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.3.13",
-    "lastTouchedAt": "2026-04-05T09:58:35.674Z"
+    "lastTouchedAt": "2026-04-05T10:13:29.237Z"
   },
   "wizard": {
     "lastRunAt": "2026-02-05T16:16:05.545Z",
@@ -178,7 +178,8 @@
       "reactionNotifications": "own",
       "typingIndicator": true,
       "resolveSenderNames": true,
-      "ackReactionScope": "all"
+      "ackReactionScope": "all",
+      "requireMention": false
     },
     "openclaw-weixin": {
       "accounts": {}
