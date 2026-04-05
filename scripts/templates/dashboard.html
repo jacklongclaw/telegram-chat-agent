@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .tab-active {
+            border-bottom: 3px solid #3b82f6;
+            color: #3b82f6;
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .status-open { background: #fef3c7; color: #92400e; }
+        .status-resolved { background: #d1fae5; color: #065f46; }
+        .status-in-progress { background: #dbeafe; color: #1e40af; }
+        .priority-high { border-left: 4px solid #ef4444; }
+        .priority-medium { border-left: 4px solid #f59e0b; }
+        .priority-low { border-left: 4px solid #22c55e; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white text-xl">🦞</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-800">OpenClaw Dashboard</h1>
+                        <p class="text-sm text-gray-500">飞书消息管理与监控系统</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">
+                        <span class="inline-block w-2 h-2 bg-green-500 rounded-full mr-1 animate-pulse"></span>
+                        数据库已连接
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex gap-8">
+                <button onclick="switchTab('dashboard')" id="tab-dashboard" class="px-4 py-3 font-medium text-gray-600 hover:text-gray-800 tab-active">
+                    📊 概览
+                </button>
+                <button onclick="switchTab('messages')" id="tab-messages" class="px-4 py-3 font-medium text-gray-600 hover:text-gray-800">
+                    💬 消息
+                </button>
+                <button onclick="switchTab('debug')" id="tab-debug" class="px-4 py-3 font-medium text-gray-600 hover:text-gray-800">
+                    🐛 调试日志
+                </button>
+                <button onclick="switchTab('tasks')" id="tab-tasks" class="px-4 py-3 font-medium text-gray-600 hover:text-gray-800">
+                    ✓ 任务
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-6">
+        
+        <!-- Dashboard Tab -->
+        <div id="content-dashboard" class="tab-content">
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-xl p-6 shadow-sm card-hover transition-all duration-200">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500">总消息数</p>
+                            <p class="text-3xl font-bold text-gray-800" id="stat-total">-</p>
+                        </div>
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                            <span class="text-2xl">💬</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 mt-2">截至今日</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-sm card-hover transition-all duration-200">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500">今日消息</p>
+                            <p class="text-3xl font-bold text-green-600" id="stat-today">-</p>
+                        </div>
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                            <span class="text-2xl">📈</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 mt-2">较昨日</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-sm card-hover transition-all duration-200">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500">待解决问题</p>
+                            <p class="text-3xl font-bold text-orange-600" id="stat-issues">-</p>
+                        </div>
+                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                            <span class="text-2xl">🐛</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 mt-2">需要处理</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-sm card-hover transition-all duration-200">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500">待办任务</p>
+                            <p class="text-3xl font-bold text-purple-600" id="stat-tasks">-</p>
+                        </div>
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                            <span class="text-2xl">✓</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 mt-2">进行中</p>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <!-- Category Distribution -->
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">📊 消息分类分布</h3>
+                    <div class="h-64">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Sender Distribution -->
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">👥 发送者分布</h3>
+                    <div class="h-64">
+                        <canvas id="senderChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Recent Messages -->
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-800">💬 最新消息</h3>
+                        <button onclick="switchTab('messages')" class="text-sm text-blue-500 hover:text-blue-700">查看更多 →</button>
+                    </div>
+                    <div id="recent-messages" class="space-y-3">
+                        <p class="text-gray-400">加载中...</p>
+                    </div>
+                </div>
+                
+                <!-- Open Issues -->
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-gray-800">🐛 待解决问题</h3>
+                        <button onclick="switchTab('debug')" class="text-sm text-blue-500 hover:text-blue-700">查看全部 →</button>
+                    </div>
+                    <div id="recent-issues" class="space-y-3">
+                        <p class="text-gray-400">暂无问题</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages Tab -->
+        <div id="content-messages" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-sm">
+                <!-- Filter Bar -->
+                <div class="p-4 border-b border-gray-200 flex flex-wrap gap-4 items-center">
+                    <input type="text" id="message-search" placeholder="搜索消息内容..." 
+                           class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-64">
+                    <select id="message-category" class="px-4 py-2 border border-gray-300 rounded-lg">
+                        <option value="">全部分类</option>
+                        <option value="expense">支出</option>
+                        <option value="general">通用</option>
+                        <option value="debug">调试</option>
+                    </select>
+                    <button onclick="loadMessages()" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                        搜索
+                    </button>
+                </div>
+                
+                <!-- Messages Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">时间</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">发送者</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">消息内容</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">分类</th>
+                            </tr>
+                        </thead>
+                        <tbody id="messages-table" class="divide-y divide-gray-200">
+                            <tr><td colspan="4" class="px-4 py-8 text-center text-gray-400">加载中...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="p-4 border-t border-gray-200 flex items-center justify-between">
+                    <p class="text-sm text-gray-500" id="messages-count">显示 0-0 条，共 0 条</p>
+                    <div class="flex gap-2" id="messages-pagination"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Debug Logs Tab -->
+        <div id="content-debug" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-sm">
+                <!-- Header -->
+                <div class="p-4 border-b border-gray-200 flex items-center justify-between">
+                    <h3 class="text-lg font-semibold text-gray-800">🐛 调试日志</h3>
+                    <button onclick="showAddDebugModal()" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                        + 添加记录
+                    </button>
+                </div>
+                
+                <!-- Filter -->
+                <div class="p-4 border-b border-gray-200 flex flex-wrap gap-4 items-center">
+                    <select id="debug-level" class="px-4 py-2 border border-gray-300 rounded-lg">
+                        <option value="">全部级别</option>
+                        <option value="error">错误</option>
+                        <option value="warning">警告</option>
+                        <option value="info">信息</option>
+                    </select>
+                    <select id="debug-status" class="px-4 py-2 border border-gray-300 rounded-lg">
+                        <option value="">全部状态</option>
+                        <option value="open">待解决</option>
+                        <option value="in-progress">进行中</option>
+                        <option value="resolved">已解决</option>
+                    </select>
+                    <button onclick="loadDebugLogs()" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
+                        筛选
+                    </button>
+                </div>
+                
+                <!-- Debug Logs List -->
+                <div id="debug-logs" class="divide-y divide-gray-100">
+                    <p class="px-4 py-8 text-center text-gray-400">加载中...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tasks Tab -->
+        <div id="content-tasks" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-sm">
+                <!-- Header -->
+                <div class="p-4 border-b border-gray-200 flex items-center justify-between">
+                    <h3 class="text-lg font-semibold text-gray-800">✓ 任务追踪</h3>
+                    <button onclick="showAddTaskModal()" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                        + 添加任务
+                    </button>
+                </div>
+                
+                <!-- Tasks List -->
+                <div id="tasks-list" class="divide-y divide-gray-100">
+                    <p class="px-4 py-8 text-center text-gray-400">加载中...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Debug Modal -->
+    <div id="debug-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-xl p-6 w-full max-w-lg mx-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">添加调试记录</h3>
+            <form id="debug-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">标题</label>
+                    <input type="text" name="title" required class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">级别</label>
+                        <select name="level" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            <option value="info">信息</option>
+                            <option value="warning">警告</option>
+                            <option value="error">错误</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">分类</label>
+                        <select name="category" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            <option value="general">通用</option>
+                            <option value="feishu">飞书</option>
+                            <option value="database">数据库</option>
+                            <option value="config">配置</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">问题描述</label>
+                    <textarea name="description" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">解决方案</label>
+                    <textarea name="solution" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-lg"></textarea>
+                </div>
+                <div class="flex justify-end gap-3 pt-4">
+                    <button type="button" onclick="closeDebugModal()" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">取消</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div id="task-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-xl p-6 w-full max-w-lg mx-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">添加任务</h3>
+            <form id="task-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">任务名称</label>
+                    <input type="text" name="task_name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">优先级</label>
+                        <select name="priority" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                            <option value="high">高</option>
+                            <option value="medium" selected>中</option>
+                            <option value="low">低</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">截止日期</label>
+                        <input type="date" name="due_date" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">描述</label>
+                    <textarea name="description" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg"></textarea>
+                </div>
+                <div class="flex justify-end gap-3 pt-4">
+                    <button type="button" onclick="closeTaskModal()" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">取消</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let currentPage = 1;
+        let categoryChart = null;
+        let senderChart = null;
+
+        // Tab switching
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('nav button').forEach(el => el.classList.remove('tab-active'));
+            
+            document.getElementById(`content-${tabName}`).classList.remove('hidden');
+            document.getElementById(`tab-${tabName}`).classList.add('tab-active');
+            
+            if (tabName === 'dashboard') loadDashboard();
+            if (tabName === 'messages') loadMessages();
+            if (tabName === 'debug') loadDebugLogs();
+            if (tabName === 'tasks') loadTasks();
+        }
+
+        // Load Dashboard
+        async function loadDashboard() {
+            try {
+                const response = await fetch('/api/stats');
+                const stats = await response.json();
+                
+                document.getElementById('stat-total').textContent = stats.total_messages || 0;
+                document.getElementById('stat-today').textContent = stats.today_messages || 0;
+                document.getElementById('stat-issues').textContent = stats.open_issues || 0;
+                document.getElementById('stat-tasks').textContent = stats.pending_tasks || 0;
+                
+                renderCharts(stats);
+                loadRecentMessages();
+                loadRecentIssues();
+            } catch (error) {
+                console.error('Failed to load dashboard:', error);
+            }
+        }
+
+        // Render Charts
+        function renderCharts(stats) {
+            // Category Chart
+            const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+            if (categoryChart) categoryChart.destroy();
+            
+            const categoryColors = {
+                'expense': '#ef4444',
+                'general': '#3b82f6',
+                'debug': '#f59e0b'
+            };
+            
+            categoryChart = new Chart(categoryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: stats.category_stats.map(s => s.category === 'expense' ? '支出' : s.category === 'debug' ? '调试' : '通用'),
+                    datasets: [{
+                        data: stats.category_stats.map(s => s.count),
+                        backgroundColor: stats.category_stats.map(s => categoryColors[s.category] || '#6b7280'),
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            // Sender Chart
+            const senderCtx = document.getElementById('senderChart').getContext('2d');
+            if (senderChart) senderChart.destroy();
+            
+            senderChart = new Chart(senderCtx, {
+                type: 'bar',
+                data: {
+                    labels: stats.sender_stats.map(s => s.sender_name.substring(0, 10)),
+                    datasets: [{
+                        label: '消息数量',
+                        data: stats.sender_stats.map(s => s.count),
+                        backgroundColor: '#3b82f6',
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        }
+
+        // Load Recent Messages
+        async function loadRecentMessages() {
+            try {
+                const response = await fetch('/api/messages?per_page=5');
+                const data = await response.json();
+                
+                const container = document.getElementById('recent-messages');
+                if (data.messages.length === 0) {
+                    container.innerHTML = '<p class="text-gray-400">暂无消息</p>';
+                    return;
+                }
+                
+                container.innerHTML = data.messages.map(msg => `
+                    <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="font-medium text-gray-800">${msg.sender_name}</span>
+                                <span class="px-2 py-0.5 text-xs rounded ${
+                                    msg.category === 'expense' ? 'bg-red-100 text-red-700' :
+                                    msg.category === 'debug' ? 'bg-yellow-100 text-yellow-700' :
+                                    'bg-blue-100 text-blue-700'
+                                }">${msg.category === 'expense' ? '支出' : msg.category === 'debug' ? '调试' : '通用'}</span>
+                            </div>
+                            <p class="text-gray-600 text-sm truncate">${msg.message_text}</p>
+                            <p class="text-gray-400 text-xs mt-1">${new Date(msg.timestamp).toLocaleString()}</p>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Failed to load messages:', error);
+            }
+        }
+
+        // Load Recent Issues
+        async function loadRecentIssues() {
+            try {
+                const response = await fetch('/api/debug-logs');
+                const logs = await response.json();
+                
+                const container = document.getElementById('recent-issues');
+                const openLogs = logs.filter(l => l.status !== 'resolved').slice(0, 3);
+                
+                if (openLogs.length === 0) {
+                    container.innerHTML = '<p class="text-gray-400">🎉 暂无待解决问题</p>';
+                    return;
+                }
+                
+                container.innerHTML = openLogs.map(log => `
+                    <div class="p-3 bg-gray-50 rounded-lg">
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="font-medium text-gray-800">${log.title}</span>
+                            <span class="px-2 py-0.5 text-xs rounded ${
+                                log.status === 'open' ? 'status-open' :
+                                log.status === 'in-progress' ? 'status-in-progress' : 'status-resolved'
+                            }">${log.status === 'open' ? '待解决' : log.status === 'in-progress' ? '进行中' : '已解决'}</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">${log.description || '无描述'}</p>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Failed to load issues:', error);
+            }
+        }
+
+        // Load Messages Table
+        async function loadMessages(page = 1) {
+            currentPage = page;
+            const search = document.getElementById('message-search').value;
+            const category = document.getElementById('message-category').value;
+            
+            try {
+                let url = `/api/messages?page=${page}&per_page=20`;
+                if (search) url += `&search=${encodeURIComponent(search)}`;
+                if (category) url += `&category=${category}`;
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                const tbody = document.getElementById('messages-table');
+                if (data.messages.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4" class="px-4 py-8 text-center text-gray-400">暂无数据</td></tr>';
+                } else {
+                    tbody.innerHTML = data.messages.map(msg => `
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 text-sm text-gray-500 whitespace-nowrap">${new Date(msg.timestamp).toLocaleString()}</td>
+                            <td class="px-4 py-3 text-sm font-medium text-gray-800">${msg.sender_name}</td>
+                            <td class="px-4 py-3 text-sm text-gray-600 max-w-md truncate">${msg.message_text}</td>
+                            <td class="px-4 py-3">
+                                <span class="px-2 py-1 text-xs rounded ${
+                                    msg.category === 'expense' ? 'bg-red-100 text-red-700' :
+                                    msg.category === 'debug' ? 'bg-yellow-100 text-yellow-700' :
+                                    'bg-blue-100 text-blue-700'
+                                }">${msg.category}</span>
+                            </td>
+                        </tr>
+                    `).join('');
+                }
+                
+                document.getElementById('messages-count').textContent = 
+                    `显示 ${(page-1)*20+1}-${Math.min(page*20, data.total)} 条，共 ${data.total} 条`;
+                
+                renderPagination(data.total_pages, page);
+            } catch (error) {
+                console.error('Failed to load messages:', error);
+            }
+        }
+
+        // Render Pagination
+        function renderPagination(totalPages, currentPage) {
+            const container = document.getElementById('messages-pagination');
+            let html = '';
+            
+            if (totalPages <= 1) {
+                container.innerHTML = '';
+                return;
+            }
+            
+            html += `<button onclick="loadMessages(${currentPage-1})" ${currentPage === 1 ? 'disabled' : ''} 
+                     class="px-3 py-1 rounded ${currentPage === 1 ? 'bg-gray-100 text-gray-400' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}">上一页</button>`;
+            
+            for (let i = 1; i <= Math.min(totalPages, 5); i++) {
+                html += `<button onclick="loadMessages(${i})" 
+                         class="px-3 py-1 rounded ${i === currentPage ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}">${i}</button>`;
+            }
+            
+            html += `<button onclick="loadMessages(${currentPage+1})" ${currentPage === totalPages ? 'disabled' : ''} 
+                     class="px-3 py-1 rounded ${currentPage === totalPages ? 'bg-gray-100 text-gray-400' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}">下一页</button>`;
+            
+            container.innerHTML = html;
+        }
+
+        // Load Debug Logs
+        async function loadDebugLogs() {
+            try {
+                const response = await fetch('/api/debug-logs');
+                const logs = await response.json();
+                
+                const container = document.getElementById('debug-logs');
+                if (logs.length === 0) {
+                    container.innerHTML = '<p class="px-4 py-8 text-center text-gray-400">暂无调试记录</p>';
+                    return;
+                }
+                
+                container.innerHTML = logs.map(log => `
+                    <div class="p-4 hover:bg-gray-50">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <span class="px-2 py-1 text-xs rounded ${
+                                        log.level === 'error' ? 'bg-red-100 text-red-700' :
+                                        log.level === 'warning' ? 'bg-yellow-100 text-yellow-700' :
+                                        'bg-blue-100 text-blue-700'
+                                    }">${log.level}</span>
+                                    <span class="px-2 py-1 text-xs rounded ${
+                                        log.status === 'open' ? 'status-open' :
+                                        log.status === 'in-progress' ? 'status-in-progress' : 'status-resolved'
+                                    }">${log.status === 'open' ? '待解决' : log.status === 'in-progress' ? '进行中' : '已解决'}</span>
+                                    <span class="text-sm text-gray-500">${log.category}</span>
+                                </div>
+                                <h4 class="font-medium text-gray-800 mb-1">${log.title}</h4>
+                                ${log.description ? `<p class="text-gray-600 text-sm mb-2">${log.description}</p>` : ''}
+                                ${log.solution ? `<p class="text-green-600 text-sm bg-green-50 p-2 rounded">✓ ${log.solution}</p>` : ''}
+                                <p class="text-gray-400 text-xs mt-2">来源: ${log.source} | ${new Date(log.created_at).toLocaleString()}</p>
+                            </div>
+                            <div class="flex gap-2 ml-4">
+                                ${log.status !== 'resolved' ? `
+                                    <button onclick="updateDebugStatus(${log.id}, 'in-progress')" class="px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-200">进行中</button>
+                                    <button onclick="updateDebugStatus(${log.id}, 'resolved')" class="px-3 py-1 text-xs bg-green-100 text-green-700 rounded hover:bg-green-200">已解决</button>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Failed to load debug logs:', error);
+            }
+        }
+
+        // Update Debug Status
+        async function updateDebugStatus(id, status) {
+            try {
+                await fetch(`/api/debug-logs/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status })
+                });
+                loadDebugLogs();
+                loadDashboard();
+            } catch (error) {
+                console.error('Failed to update status:', error);
+            }
+        }
+
+        // Show Add Debug Modal
+        function showAddDebugModal() {
+            document.getElementById('debug-modal').classList.remove('hidden');
+            document.getElementById('debug-modal').classList.add('flex');
+        }
+
+        function closeDebugModal() {
+            document.getElementById('debug-modal').classList.add('hidden');
+            document.getElementById('debug-modal').classList.remove('flex');
+            document.getElementById('debug-form').reset();
+        }
+
+        // Show Add Task Modal
+        function showAddTaskModal() {
+            document.getElementById('task-modal').classList.remove('hidden');
+            document.getElementById('task-modal').classList.add('flex');
+        }
+
+        function closeTaskModal() {
+            document.getElementById('task-modal').classList.add('hidden');
+            document.getElementById('task-modal').classList.remove('flex');
+            document.getElementById('task-form').reset();
+        }
+
+        // Load Tasks
+        async function loadTasks() {
+            try {
+                const response = await fetch('/api/tasks');
+                const tasks = await response.json();
+                
+                const container = document.getElementById('tasks-list');
+                if (tasks.length === 0) {
+                    container.innerHTML = '<p class="px-4 py-8 text-center text-gray-400">暂无任务</p>';
+                    return;
+                }
+                
+                container.innerHTML = tasks.map(task => `
+                    <div class="p-4 hover:bg-gray-50 priority-${task.priority}">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-1">
+                                    <span class="px-2 py-1 text-xs rounded ${
+                                        task.priority === 'high' ? 'bg-red-100 text-red-700' :
+                                        task.priority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                                        'bg-green-100 text-green-700'
+                                    }">${task.priority === 'high' ? '高' : task.priority === 'medium' ? '中' : '低'}</span>
+                                    <span class="px-2 py-1 text-xs rounded ${
+                                        task.status === 'completed' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
+                                    }">${task.status === 'completed' ? '已完成' : '待处理'}</span>
+                                    ${task.due_date ? `<span class="text-sm text-gray-500">截止: ${task.due_date}</span>` : ''}
+                                </div>
+                                <h4 class="font-medium text-gray-800 ${task.status === 'completed' ? 'line-through text-gray-400' : ''}">${task.task_name}</h4>
+                                ${task.description ? `<p class="text-gray-600 text-sm mt-1">${task.description}</p>` : ''}
+                            </div>
+                            <div class="flex gap-2 ml-4">
+                                ${task.status !== 'completed' ? `
+                                    <button onclick="updateTaskStatus(${task.id}, 'completed')" class="px-3 py-1 text-xs bg-green-100 text-green-700 rounded hover:bg-green-200">完成</button>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Failed to load tasks:', error);
+            }
+        }
+
+        // Update Task Status
+        async function updateTaskStatus(id, status) {
+            try {
+                await fetch(`/api/tasks/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status })
+                });
+                loadTasks();
+                loadDashboard();
+            } catch (error) {
+                console.error('Failed to update task:', error);
+            }
+        }
+
+        // Form submissions
+        document.getElementById('debug-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            try {
+                await fetch('/api/debug-logs', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                closeDebugModal();
+                loadDebugLogs();
+                loadDashboard();
+            } catch (error) {
+                console.error('Failed to add debug log:', error);
+            }
+        });
+
+        document.getElementById('task-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            try {
+                await fetch('/api/tasks', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                closeTaskModal();
+                loadTasks();
+                loadDashboard();
+            } catch (error) {
+                console.error('Failed to add task:', error);
+            }
+        });
+
+        // Search on enter
+        document.getElementById('message-search').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') loadMessages();
+        });
+
+        // Initialize
+        loadDashboard();
+    </script>
+</body>
+</html>
